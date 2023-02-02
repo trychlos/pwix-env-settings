@@ -1,4 +1,4 @@
-# pwix:env-settings
+# pwix:env-settings - README
 
 ## Preliminary note
 
