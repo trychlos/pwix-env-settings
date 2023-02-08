@@ -1,0 +1,15 @@
+/*
+ * pwix:env-settings/src/common/js/contants.js
+ */
+
+PES_VERBOSE_NONE         = 0x00;
+PES_VERBOSE_CONFIGURE    = 0x01 <<  0;
+PES_VERBOSE_READY        = 0x01 <<  1;
+PES_VERBOSE_STARTUP_MARK = 0x01 <<  2;
+PES_VERBOSE_STARTUP_DUMP = 0x01 <<  3;
+PES_VERBOSE_SERVERDIR    = 0x01 <<  4;
+PES_VERBOSE_CONFIGPATH   = 0x01 <<  5;
+PES_VERBOSE_LOADFILE     = 0x01 <<  6;
+PES_VERBOSE_SERVERCONF   = 0x01 <<  7;
+PES_VERBOSE_PUBLICCONF   = 0x01 <<  8;
+PES_VERBOSE_ATOMICCONF   = 0x01 <<  9;

@@ -8,13 +8,43 @@ This package is a fork from 4commerce:env-settings v 1.2.0:
 - fortunatly, I was been able to fix the issue I encountered
 - so this package ;)
 
-The rest of this documentation is orginally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
+## Installation
+
+```
+  meteor add pwix:env-settings
+```
+
+## Configuration
+
+The `pwixEnvSettings.configure()` function can be called to configure the package:
+
+- verbosity
+
+  A OR-ed value which describes the verbosity level requested by the application.
+
+  Accepted values are:
+
+  - PES_VERBOSE_NONE
+  - PES_VERBOSE_DEFINE
+  - PES_VERBOSE_CONFIGURE
+  - PES_VERBOSE_READY
+  - PES_VERBOSE_STARTUP_MARK
+  - PES_VERBOSE_STARTUP_DUMP
+  - PES_VERBOSE_SERVERDIR
+  - PES_VERBOSE_CONFIGPATH
+  - PES_VERBOSE_LOADFILE
+  - PES_VERBOSE_SERVERCONF
+  - PES_VERBOSE_PUBLICCONF
+  - PES_VERBOSE_ATOMICCONF
+
+## Original documentation
+
+The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
 
 P. Wieser
-- Last updated on 2023, Jan. 28th
+- Last updated on 2023, Feb. 8th
 
 ----
-## Original documentation
 
 This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your private assets directory. The configuration files will be autoloaded during startup based on the active environment.
 
