@@ -14,7 +14,7 @@ pwixEnvSettings = {
     configure: function( o ){
         // just do the work
         pwixEnvSettings.conf = {
-	    ...pwixEnvSettings.conf,
+	    ...pwixEnvSettings._defaults,
 	    ...o
         };
         // verbosity management _after_ having set the conf

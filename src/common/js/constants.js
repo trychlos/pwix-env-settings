@@ -2,7 +2,7 @@
  * pwix:env-settings/src/common/js/contants.js
  */
 
-PES_VERBOSE_NONE         = 0x00;
+PES_VERBOSE_NONE         = 0;
 PES_VERBOSE_CONFIGURE    = 0x01 <<  0;
 PES_VERBOSE_READY        = 0x01 <<  1;
 PES_VERBOSE_STARTUP_MARK = 0x01 <<  2;

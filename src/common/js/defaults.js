@@ -2,13 +2,8 @@
  * pwix:env-settings/src/common/js/defaults.js
  */
 
-defaults = {
-    conf: {
-        verbosity: PES_VERBOSE_NONE
-    }
+pwixEnvSettings._defaults = {
+    verbosity: PES_VERBOSE_NONE
 };
 
-pwixEnvSettings.conf = {
-    ...pwixEnvSettings.conf,
-    ...defaults.conf
-};
+pwixEnvSettings.conf = { ...pwixEnvSettings._defaults };

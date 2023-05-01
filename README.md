@@ -1,4 +1,4 @@
-# pwix:env-settings - README
+# pwix:env-settings
 
 ## Preliminary note
 
@@ -11,38 +11,44 @@ This package is a fork from 4commerce:env-settings v 1.2.0:
 ## Installation
 
 ```
-  meteor add pwix:env-settings
+    meteor add pwix:env-settings
 ```
 
 ## Configuration
 
-The `pwixEnvSettings.configure()` function can be called to configure the package:
+The package's behavior can be configured through a call to the `pwixEnvSettings.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
-- verbosity
+Single known configuration option is:
+
+- `verbosity`
 
   A OR-ed value which describes the verbosity level requested by the application.
 
   Accepted values are:
 
-  - PES_VERBOSE_NONE
-  - PES_VERBOSE_DEFINE
-  - PES_VERBOSE_CONFIGURE
-  - PES_VERBOSE_READY
-  - PES_VERBOSE_STARTUP_MARK
-  - PES_VERBOSE_STARTUP_DUMP
-  - PES_VERBOSE_SERVERDIR
-  - PES_VERBOSE_CONFIGPATH
-  - PES_VERBOSE_LOADFILE
-  - PES_VERBOSE_SERVERCONF
-  - PES_VERBOSE_PUBLICCONF
-  - PES_VERBOSE_ATOMICCONF
+  - `PES_VERBOSE_NONE`
+  - `PES_VERBOSE_DEFINE`
+  - `PES_VERBOSE_CONFIGURE`
+  - `PES_VERBOSE_READY`
+  - `PES_VERBOSE_STARTUP_MARK`
+  - `PES_VERBOSE_STARTUP_DUMP`
+  - `PES_VERBOSE_SERVERDIR`
+  - `PES_VERBOSE_CONFIGPATH`
+  - `PES_VERBOSE_LOADFILE`
+  - `PES_VERBOSE_SERVERCONF`
+  - `PES_VERBOSE_PUBLICCONF`
+  - `PES_VERBOSE_ATOMICCONF`
+
+Please note that `pwixEnvSettings.configure()` method should be called in the same terms both in client and server sides.
+
+Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `pwixEnvSettings.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
 
 ## Original documentation
 
 The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
 
 P. Wieser
-- Last updated on 2023, Feb. 8th
+- Last updated on 2023, May 1st
 
 ----
 
