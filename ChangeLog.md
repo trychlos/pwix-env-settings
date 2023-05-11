@@ -2,6 +2,7 @@
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
+| xxx   | xxx | Do not try to export undefined PES_VERBOSE_DEFINE |
 | 1.2.1   | 2023- 1-29 | Initial release as a (fixed) fork of 4commerce:env-settings v 1.2.0 |
 
 ---

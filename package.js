@@ -11,7 +11,6 @@ Package.onUse( function( api ){
     api.export([
         'pwixEnvSettings',
         'PES_VERBOSE_NONE',
-        'PES_VERBOSE_DEFINE',
         'PES_VERBOSE_CONFIGURE',
         'PES_VERBOSE_READY',
         'PES_VERBOSE_STARTUP_MARK',
