@@ -10,7 +10,8 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    2 |  |  |
+|    2 | 2023- 5-12 | a 'ready' status is advertized at startup() time - replace it with a reactive data source when actually ready |
+|    3 |  |  |
 
 ---
 ## Done
