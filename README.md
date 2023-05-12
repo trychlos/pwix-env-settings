@@ -1,12 +1,14 @@
 # pwix:env-settings
 
-## Preliminary note
+## Preliminary notes
 
-This package is a fork from 4commerce:env-settings v 1.2.0:
+This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/):
 - because this original package does exactly what it says, and does it well
 - unfortunately, it seems no more maintained
 - fortunatly, I was been able to fix the issue I encountered
 - so this package ;)
+
+Also please note that this package is a server-side **only** package. This is the reason why exports are only defined on server-side.
 
 ## Installation
 
@@ -22,32 +24,64 @@ Single known configuration option is:
 
 - `verbosity`
 
-  A OR-ed value which describes the verbosity level requested by the application.
+    A OR-ed value which describes the verbosity level requested by the application.
 
-  Accepted values are:
+    Accepted values are:
 
-  - `PES_VERBOSE_NONE`
-  - `PES_VERBOSE_CONFIGURE`
-  - `PES_VERBOSE_READY`
-  - `PES_VERBOSE_STARTUP_MARK`
-  - `PES_VERBOSE_STARTUP_DUMP`
-  - `PES_VERBOSE_SERVERDIR`
-  - `PES_VERBOSE_CONFIGPATH`
-  - `PES_VERBOSE_LOADFILE`
-  - `PES_VERBOSE_SERVERCONF`
-  - `PES_VERBOSE_PUBLICCONF`
-  - `PES_VERBOSE_ATOMICCONF`
+    - `PES_VERBOSE_NONE`
 
-Please note that `pwixEnvSettings.configure()` method should be called in the same terms both in client and server sides.
+        No verbose at all.
 
-Also note, as an explicit reminder for the fools, that, because the Meteor packages are instanciated at application level, they can be configured once at most, and only once at most. Each addtionnal call to `pwixEnvSettings.configure()` will just override the previous one. You have been warned: **only the application should configure a package**.
+    - `PES_VERBOSE_CONFIGURE`
+
+        Trace calls to `pwixEnvSettings.configure()` and their result.
+
+    - `PES_VERBOSE_READY`
+
+        Emit a message when the package is ready.
+
+    - `PES_VERBOSE_STARTUP_MARK`
+
+        Emit a message when the package runs Meteor.startup().
+
+    - `PES_VERBOSE_STARTUP_DUMP`
+
+        Dump `pwixEnvSettings` object at Meteor.startup().
+
+    - `PES_VERBOSE_SERVERDIR`
+
+        Trace the server directory where settings are read from.
+
+    - `PES_VERBOSE_CONFIGPATH`
+
+        Trace the private configuration directory.
+
+    - `PES_VERBOSE_LOADFILE`
+
+        Trace each individual filename at the time it is loaded.
+
+    - `PES_VERBOSE_SERVERCONF`
+
+        Trace the loading of `config/server` settings.
+
+    - `PES_VERBOSE_PUBLICCONF`
+
+        Trace the loading of `config/public` settings.
+
+    - `PES_VERBOSE_ATOMICCONF`
+
+        Trace the content of each individual file at the time it is loaded.
+
+Also note, as an explicit reminder, that, because the Meteor packages are instanciated at application level, they can have only one configuration. In order to prevent any risk of collision, the configuration of the package should be reserved to the application itself. In other words, other packages, even if they take advantage of this one, should not try to call themselves the `pwixEnvSettings.configure()` method.
+
+You have been warned: **only the application should configure the package**.
 
 ## Original documentation
 
 The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
 
 P. Wieser
-- Last updated on 2023, May 1st
+- Last updated on 2023, May 12th
 
 ----
 
