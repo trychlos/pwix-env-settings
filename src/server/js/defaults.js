@@ -1,5 +1,5 @@
 /*
- * pwix:env-settings/src/common/js/defaults.js
+ * pwix:env-settings/src/server/js/defaults.js
  */
 
 pwixEnvSettings._defaults = {

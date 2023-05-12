@@ -1,5 +1,5 @@
 /*
- * pwix:env-settings/src/common/js/contants.js
+ * pwix:env-settings/src/server/js/constants.js
  */
 
 PES_VERBOSE_NONE         = 0;

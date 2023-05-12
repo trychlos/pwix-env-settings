@@ -1,5 +1,5 @@
 /*
- * pwix:env-settings/src/common/js/verbose.js
+ * pwix:env-settings/src/server/js/verbose.js
  */
 
 _verbose = function( level ){
