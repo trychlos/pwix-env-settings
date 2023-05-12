@@ -2,7 +2,8 @@
 
 | Version | Release    | Content |
 | ---:    | :---       | :---    |
-| xxx   | xxx | Emphasize this is a server-side only package |
+| 1.3.1   | 2023- 5-12 | Fix ChangeLog release date |
+| 1.3.0   | 2023- 5-12 | Emphasize this is a server-side only package |
 |         |            | - by exporting only to the server |
 |         |            | - cleaning the files layout to have a server only structure |
 |         |            | Do not try to export undefined PES_VERBOSE_DEFINE |
