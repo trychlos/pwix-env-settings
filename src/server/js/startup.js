@@ -3,12 +3,6 @@
  */
 
 Meteor.startup(() => {
-    if( pwixEnvSettings.conf.verbosity & PES_VERBOSE_READY ){
-        console.log( 'pwix:env-settings ready' );
-    }
-});
-
-Meteor.startup(() => {
     if( pwixEnvSettings.conf.verbosity & PES_VERBOSE_STARTUP_MARK ){
         console.log( 'pwix:env-settings startup' );
     }

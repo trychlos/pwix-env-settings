@@ -16,6 +16,26 @@ Also please note that this package is a server-side **only** package. This is th
     meteor add pwix:env-settings
 ```
 
+## Provides
+
+### Global object
+
+`pwixEnvSettings`
+
+### Methods
+
+- `pwixEnvSettings.configure()`
+
+    The configuration method. See below.
+
+- `pwixEnvSettings.ready()`
+
+    A getter/setter method which get/set the readyness status of the package.
+
+    The package is considered ready when all configuration files have been loaded.
+
+    Note that these actions are taken at `Meteor.startup()` time. There is no chance that the package be ready before that.
+
 ## Configuration
 
 The package's behavior can be configured through a call to the `pwixEnvSettings.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.

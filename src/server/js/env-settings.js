@@ -196,4 +196,7 @@ Meteor.startup( function(){
     Meteor.settings.public.runtime = {
         env: process.env.NODE_ENV
     }
+
+    // advertize that the package is ready
+    pwixEnvSettings.ready( true );
 });
