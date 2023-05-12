@@ -21,7 +21,7 @@ Package.onUse( function( api ){
         'PES_VERBOSE_SERVERCONF',
         'PES_VERBOSE_PUBLICCONF',
         'PES_VERBOSE_ATOMICCONF'
-    ]);
+    ], 'server' );
     api.mainModule( 'src/server/js/index.js', 'server' );
 });
 
