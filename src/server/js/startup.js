@@ -3,13 +3,13 @@
  */
 
 Meteor.startup(() => {
-    if( EnvSettings.conf.verbosity & PES_VERBOSE_STARTUP_MARK ){
+    if( EnvSettings._conf.verbosity & PES_VERBOSE_STARTUP_MARK ){
         console.log( 'pwix:env-settings startup' );
     }
 });
 
 Meteor.startup(() => {
-    if( EnvSettings.conf.verbosity & PES_VERBOSE_STARTUP_DUMP ){
+    if( EnvSettings._conf.verbosity & PES_VERBOSE_STARTUP_DUMP ){
         console.log( 'pwix:env-settings startup', EnvSettings );
     }
 });

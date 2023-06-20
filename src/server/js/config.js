@@ -5,16 +5,28 @@
 import _ from 'lodash';
 
 EnvSettings = {
-    conf: {},
+    _conf: {},
 
     _defaults: {
         verbosity: PES_VERBOSE_NONE
     },
 
-    // should be *in same terms* called both by the client and the server
+    /**
+     * @summary Get/set the package configuration
+     *  Should be called *in same terms* both by the client and the server
+     * @locus Anywhere
+     * @param {Object} o Options object
+     * @returns {Object} Configuration object
+     */
     configure: function( o ){
-        _.merge( EnvSettings.conf, EnvSettings._defaults, o );
+        if( o && _.isObject( o )){
+            _.merge( EnvSettings._conf, EnvSettings._defaults, o );
+        }
 	    // verbosity management _after_ having set the conf
-        _verbose( PES_VERBOSE_CONFIGURE, 'configure() with', o, 'building', EnvSettings.conf );
+        _verbose( PES_VERBOSE_CONFIGURE, 'configure() with', o, 'building', EnvSettings._conf );
+        // also acts as a getter
+        return EnvSettings._conf;
     }
 };
+
+_.merge( EnvSettings._conf, EnvSettings._defaults );

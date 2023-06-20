@@ -7,6 +7,8 @@
     Release date: 
 
     - Merge defaults.js into config.js
+    - Rename conf to _conf, making clearer it is private
+    - configure() now acts both as a getter and a setter
 
 ### 1.4.0
 
