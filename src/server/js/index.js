@@ -5,9 +5,8 @@
 import './verbose.js';
 //
 import './check_npms.js';
-import './config.js';
 import './constants.js';
-import './defaults.js';
+import './config.js';
 import './env-settings.js';
 import './ready.js';
 import './startup.js';

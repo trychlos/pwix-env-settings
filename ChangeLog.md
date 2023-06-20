@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Merge defaults.js into config.js
 
 ### 1.4.0
 

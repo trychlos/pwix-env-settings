@@ -7,6 +7,10 @@ import _ from 'lodash';
 EnvSettings = {
     conf: {},
 
+    _defaults: {
+        verbosity: PES_VERBOSE_NONE
+    },
+
     // should be *in same terms* called both by the client and the server
     configure: function( o ){
         _.merge( EnvSettings.conf, EnvSettings._defaults, o );
