@@ -4,6 +4,7 @@
 
 import './verbose.js';
 //
+import './check_npms.js';
 import './config.js';
 import './constants.js';
 import './defaults.js';

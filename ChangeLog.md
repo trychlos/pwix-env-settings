@@ -1,16 +1,43 @@
-# pwix:env-settings - ChangeLog
+# pwix:env-settings
 
-| Version | Release    | Content |
-| ---:    | :---       | :---    |
-| 1.3.1   | 2023- 5-12 | Fix ChangeLog release date |
-| 1.3.0   | 2023- 5-12 | Emphasize this is a server-side only package |
-|         |            | - by exporting only to the server |
-|         |            | - cleaning the files layout to have a server only structure |
-|         |            | Do not try to export undefined PES_VERBOSE_DEFINE |
-|         |            | Define a pwixEnvSettings.ready() reactive data source |
-| 1.2.2   | 2023- 5- 1 | Review files layout |
-|         |            | Define pwixEnvSettings.configure() and verbosity levels |
-| 1.2.1   | 2023- 1-29 | Initial release as a (fixed) fork of 4commerce:env-settings v 1.2.0 |
+## ChangeLog
+
+### 1.4.0-rc
+
+    Release date: 
+
+    - Add a dependency on tmeasday:check-npm-versions
+    - Replace underscore and meteorblackbelt:underscore-deep dependencies with lodash
+
+### 1.3.1
+
+    Release date: 2023- 5-12
+
+    - Fix ChangeLog release date
+
+### 1.3.0
+
+    Release date: 2023- 5-12
+
+    - Define a pwixEnvSettings.ready() reactive data source
+    - Emphasize this is a server-side only package
+        - by exporting only to the server
+        - cleaning the files layout to have a server only structure
+
+    - Do not try to export undefined PES_VERBOSE_DEFINE
+
+### 1.2.2
+
+    Release date: 2023- 5- 1
+
+    - Review files layout
+    - Define pwixEnvSettings.configure() and verbosity levels
+
+### 1.2.1
+
+    Release date: 2023- 1-29
+
+    - Initial release as a (fixed) fork of 4commerce:env-settings v 1.2.0
 
 ---
 P. Wieser

@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:env-settings',
-    version: '1.3.2-rc',
+    version: '1.4.0-rc',
     summary: 'Autoload settings (YAML, JSON) for server and client from private assets based on NODE_ENV.',
     git: 'https://github.com/trychlos/pwix-env-settings',
     documentation: 'README.md'
@@ -21,7 +21,9 @@ Package.onUse( function( api ){
         'PES_VERBOSE_SERVERCONF',
         'PES_VERBOSE_PUBLICCONF',
         'PES_VERBOSE_ATOMICCONF'
-    ], 'server' );
+    ],
+        'server'
+    );
     api.mainModule( 'src/server/js/index.js', 'server' );
 });
 
@@ -35,7 +37,6 @@ Package.onTest( function( api ){
 function configure( api ){
     api.versionsFrom( '2.9.0' );
     api.use( 'ecmascript', 'server' );
-    api.use( 'underscore', 'server' );
-    api.use( 'meteorblackbelt:underscore-deep@0.0.3', 'server' );
+    api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.use( 'udondan:yml@3.2.2_1', 'server' );
 }

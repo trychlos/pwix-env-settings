@@ -96,9 +96,15 @@ Also note, as an explicit reminder, that, because the Meteor packages are instan
 
 You have been warned: **only the application should configure the package**.
 
+## Issues & help
+
+In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).
+
 ## Original documentation
 
 The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
+
+It may have been fixed for some typos.
 
 P. Wieser
 - Last updated on 2023, May 12th
@@ -260,7 +266,7 @@ images:
 
 I prefer to use [YAML](https://en.wikipedia.org/wiki/YAML) in case of it's easy notation and leveling.
 
-For parsing YAML and JSON we using [js-yaml](https://github.com/nodeca/js-yaml) and getting file content via it's `safeLoad` method. Please be aware that this is defined as loading untrusted data and therefor some features are not enabled. Currently I can't see any loss on that.
+For parsing YAML and JSON we are using [js-yaml](https://github.com/nodeca/js-yaml) and getting file content via it's `safeLoad` method. Please be aware that this is defined as loading untrusted data and therefore some features are not enabled. Currently I can't see any loss on that.
 
 You may check your YAML code on their online editor at: http://nodeca.github.io/js-yaml/
 
@@ -268,7 +274,7 @@ You may check your YAML code on their online editor at: http://nodeca.github.io/
 
 After each config file is loaded, parsed and instatiated, we extend that object to the already existing configuration. For that process we are using `_.deepExtend` which do not replace sub-elements but merge or overload them.
 
-For overloading you have to take care about the file loading order which is described at section _Directory Structure_.
+For overloading you have to take care about the file loading order which is described at section [Directory Structure](#directory-structure).
 
 Here is a small example.
 
@@ -334,7 +340,7 @@ smtp:
 
 Be aware that the rules of overloading and file ordering is still the same. 
 
-_Attention_: It is not necessary for the loader, that the partials have the same filename at all environments – but, I advise you to name them equal for clearness.
+_Attention_: It is not necessary for the loader that the partials have the same filename at all environments – but, I advise you to name them equal for clearness.
 
 ### Meteor option --settings and METEOR_SETTINGS
 
@@ -378,22 +384,21 @@ Read more at the package's homepage [on GitHub](https://github.com/4commerce-tec
 
 ### Changes to Meteor.settings
 
-The object properties of Meteor.settings are allways writeable. We highly advise you not to make changes to your settings inside your server or your client app. If you have to and can not realize your requests within the configuration files, you should make latest changes while inside main startup code. The setting values are not reactive and changes are not (re-)synced between client and server.
+The object properties of Meteor.settings are always writeable. We highly advise you not to make changes to your settings inside your server or your client app. If you have to and can not realize your requests within the configuration files, you should make latest changes while inside main startup code. The setting values are not reactive and changes are not (re-)synced between client and server.
 
 ### A public element in your config files
 
-The loading process will automatically merge the public settings at the `Meteor.settings.public` element. Therefor and to make sure, that you have not made a typing error, we denied the occurence of a `public` element at root level inside your public and server configurations (only at root level). This should avoid (miss-typed) structures like `Meteor.settings.public.public`. In such a case an error is thrown with the identification of the false file.
+The loading process will automatically merge the public settings at the `Meteor.settings.public` element. Therefore and to make sure that you have not made a typing error, we denied the occurence of a `public` element at root level inside your public and server configurations (only at root level). This should avoid (miss-typed) structures like `Meteor.settings.public.public`. In such a case an error is thrown with the identification of the false file.
 
 ### Package dependencies
 
-When you add this package, follwing dependencies will load:
+When you add this package, following dependencies will load:
 
-1. [meteorblackbelt:underscore-deep](https://atmospherejs.com/meteorblackbelt/underscore-deep)
-2. [udondan:yml](https://atmospherejs.com/udondan/yml)
+1. [udondan:yml](https://atmospherejs.com/udondan/yml)
 
 ### Related packages
 
-When you add this package, follwing are usefull to add:
+When you add this package, following may be useful to add:
 
 1. [4commerce:meteor-namespace-template-helper](https://atmospherejs.com/4commerce/meteor-namespace-template-helper)
 2. [4commerce:pubsettings-template-helper](https://atmospherejs.com/4commerce/pubsettings-template-helper)

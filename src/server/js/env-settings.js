@@ -26,9 +26,13 @@
  * https://github.com/4commerce-technologies-AG/meteor-package-env-settings/pull/7
  * though with an obsolete relative path :(
  *
+ *  pwi 2023- 6-20 use lodash instead of meteorblackbelt:underscore-deep/deepExtend
+ *
  *  pwi 2022- 1-10 fix mini-files.js require
  *                 bump the version from 1.2.0 to 1.2.1
  */
+
+import _ from 'lodash';
 
 // use for file access
 var fs = Npm.require('fs');
@@ -84,7 +88,7 @@ function locateFiles( path, recursive_, match_, files_ ){
 
 // this function loops through an array of filenames
 // and tries to load and instantiate them.
-// result is the deepMerge for all files 
+// result is a deep merge for all files 
 function loadConfigFiles( filenames, config ){
     config = config || {}
     filenames.every(( filename ) => {
@@ -99,7 +103,7 @@ function loadConfigFiles( filenames, config ){
                 throw new Meteor.Error( 'It is not allowed to include public settings at server or public config files on <root> level! Error in file ' + assetPath( filename ) + '.' );
             }
             // merge objects
-            _.deepExtend( config, config_, true );
+            _.merge( config, config_ );
         }
         return true;
     });
@@ -159,7 +163,7 @@ Meteor.startup( function(){
 
     const serverConfig = getConfig( configPath, 'server' );
     Meteor.settings = Meteor.settings || {};
-    _.deepExtend( Meteor.settings, serverConfig, true );
+    _.merge( Meteor.settings, serverConfig );
 
     _verbose( PES_VERBOSE_SERVERCONF, 'serverConfig', serverConfig );
     _verbose( PES_VERBOSE_SERVERCONF, 'Meteor.settings', Meteor.settings );
@@ -170,7 +174,7 @@ Meteor.startup( function(){
 
     const publicConfig = getConfig( configPath, 'public' );
     Meteor.settings.public = Meteor.settings.public || {};
-    _.deepExtend( Meteor.settings.public, publicConfig, true );
+    _.merge( Meteor.settings.public, publicConfig );
 
     _verbose( PES_VERBOSE_PUBLICCONF, 'publicConfig', publicConfig );
     _verbose( PES_VERBOSE_PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
