@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.4.0-rc
+### 1.4.0
 
-    Release date: 
+    Release date: 2023- 6-20
 
     - Add a dependency on tmeasday:check-npm-versions
     - Replace underscore and meteorblackbelt:underscore-deep dependencies with lodash
@@ -41,4 +41,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, May 12th
+- Last updated on 2023, June 20th

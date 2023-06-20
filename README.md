@@ -100,6 +100,10 @@ You have been warned: **only the application should configure the package**.
 
 In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).
 
+## Dependencies
+
+As of v 1.4.0, `underscore` and `meteorblackbelt:underscore-deep` dependencies are replaced with `lodash`.
+
 ## Original documentation
 
 The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
@@ -107,7 +111,7 @@ The rest of this documentation is originally from **4commerce**. See also [the G
 It may have been fixed for some typos.
 
 P. Wieser
-- Last updated on 2023, May 12th
+- Last updated on 2023, June 20th
 
 ----
 
