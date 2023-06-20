@@ -19,7 +19,7 @@
 
     Release date: 2023- 5-12
 
-    - Define a pwixEnvSettings.ready() reactive data source
+    - Define a EnvSettings.ready() reactive data source
     - Emphasize this is a server-side only package
         - by exporting only to the server
         - cleaning the files layout to have a server only structure
@@ -31,7 +31,7 @@
     Release date: 2023- 5- 1
 
     - Review files layout
-    - Define pwixEnvSettings.configure() and verbosity levels
+    - Define EnvSettings.configure() and verbosity levels
 
 ### 1.2.1
 

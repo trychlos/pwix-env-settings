@@ -202,5 +202,5 @@ Meteor.startup( function(){
     }
 
     // advertize that the package is ready
-    pwixEnvSettings.ready( true );
+    EnvSettings.ready( true );
 });

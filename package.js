@@ -9,7 +9,7 @@ Package.describe({
 Package.onUse( function( api ){
     configure( api );
     api.export([
-        'pwixEnvSettings',
+        'EnvSettings',
         'PES_VERBOSE_NONE',
         'PES_VERBOSE_CONFIGURE',
         'PES_VERBOSE_READY',

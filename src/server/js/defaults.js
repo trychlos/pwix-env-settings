@@ -4,8 +4,8 @@
 
 import _ from 'lodash';
 
-pwixEnvSettings._defaults = {
+EnvSettings._defaults = {
     verbosity: PES_VERBOSE_NONE
 };
 
-_.merge( pwixEnvSettings.conf, pwixEnvSettings._defaults );
+_.merge( EnvSettings.conf, EnvSettings._defaults );

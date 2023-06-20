@@ -20,15 +20,15 @@ Also please note that this package is a server-side **only** package. This is th
 
 ### Global object
 
-`pwixEnvSettings`
+`EnvSettings`
 
 ### Methods
 
-- `pwixEnvSettings.configure()`
+- `EnvSettings.configure()`
 
     The configuration method. See below.
 
-- `pwixEnvSettings.ready()`
+- `EnvSettings.ready()`
 
     A getter/setter method which get/set the readyness status of the package.
 
@@ -38,7 +38,7 @@ Also please note that this package is a server-side **only** package. This is th
 
 ## Configuration
 
-The package's behavior can be configured through a call to the `pwixEnvSettings.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
+The package's behavior can be configured through a call to the `EnvSettings.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
 Single known configuration option is:
 
@@ -54,7 +54,7 @@ Single known configuration option is:
 
     - `PES_VERBOSE_CONFIGURE`
 
-        Trace calls to `pwixEnvSettings.configure()` and their result.
+        Trace calls to `EnvSettings.configure()` and their result.
 
     - `PES_VERBOSE_READY`
 
@@ -66,7 +66,7 @@ Single known configuration option is:
 
     - `PES_VERBOSE_STARTUP_DUMP`
 
-        Dump `pwixEnvSettings` object at Meteor.startup().
+        Dump `EnvSettings` object at Meteor.startup().
 
     - `PES_VERBOSE_SERVERDIR`
 
@@ -92,7 +92,7 @@ Single known configuration option is:
 
         Trace the content of each individual file at the time it is loaded.
 
-Also note, as an explicit reminder, that, because the Meteor packages are instanciated at application level, they can have only one configuration. In order to prevent any risk of collision, the configuration of the package should be reserved to the application itself. In other words, other packages, even if they take advantage of this one, should not try to call themselves the `pwixEnvSettings.configure()` method.
+Also note, as an explicit reminder, that, because the Meteor packages are instanciated at application level, they can have only one configuration. In order to prevent any risk of collision, the configuration of the package should be reserved to the application itself. In other words, other packages, even if they take advantage of this one, should not try to call themselves the `EnvSettings.configure()` method.
 
 You have been warned: **only the application should configure the package**.
 

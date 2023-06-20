@@ -5,7 +5,7 @@
 _verbose = function( level ){
     let _args = [ ...arguments ];
     _args.shift();
-    if( pwixEnvSettings.conf.verbosity & level ){
+    if( EnvSettings.conf.verbosity & level ){
         console.log( 'pwix:env-settings', ..._args );
     }
 }

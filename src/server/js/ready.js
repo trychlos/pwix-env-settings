@@ -15,7 +15,7 @@ _ready = {
  * @param {Boolean|none} b a status to be set when acting as a setter
  * @returns {Boolean} the current readyness status
  */
-pwixEnvSettings.ready = function( b ){
+EnvSettings.ready = function( b ){
     if( b === true || b === false ){
         if( _ready.value !== b ){
             _ready.value = b;
@@ -27,7 +27,7 @@ pwixEnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    if( pwixEnvSettings.ready() && pwixEnvSettings.conf.verbosity & PES_VERBOSE_READY ){
+    if( EnvSettings.ready() && EnvSettings.conf.verbosity & PES_VERBOSE_READY ){
         console.log( 'pwix:env-settings ready' );
     }
 });
