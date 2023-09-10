@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix global object definition
 
 ### 1.5.0
 

@@ -2,6 +2,7 @@
  * pwix:env-settings/src/server/js/index.js
  */
 
+import './global.js';
 import './verbose.js';
 //
 import './check_npms.js';
