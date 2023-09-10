@@ -41,7 +41,7 @@ var files = Npm.require("../mini-files");
 
 // save reference to serverDir
 var serverDir = files.pathResolve( __meteor_bootstrap__.serverDir );
-_verbose( PES_VERBOSE_SERVERDIR, 'serverDir', serverDir );
+_verbose( EnvSettings.C.Verbose.SERVERDIR, 'serverDir', serverDir );
 
 // Taken from meteor/tools/bundler.js#L1509
 // currently the directory structure has not changed for build
@@ -49,7 +49,7 @@ var assetBundlePath = files.pathJoin( serverDir, 'assets', 'app' );
 
 // location of the private config folders
 var configPath = files.pathJoin( assetBundlePath, 'config' );
-_verbose( PES_VERBOSE_CONFIGPATH, 'configPath', configPath );
+_verbose( EnvSettings.C.Verbose.CONFIGPATH, 'configPath', configPath );
 
 // when showing error messages, we want to show the shortest path
 // to the private asset ressource and not the absolute path from bundle
@@ -92,12 +92,12 @@ function locateFiles( path, recursive_, match_, files_ ){
 function loadConfigFiles( filenames, config ){
     config = config || {}
     filenames.every(( filename ) => {
-        _verbose( PES_VERBOSE_LOADFILE, 'loadFile', filename );
+        _verbose( EnvSettings.C.Verbose.LOADFILE, 'loadFile', filename );
         var content = loadConfigFile( filename );
         if( content !== false ){
             // try to parse the content and return instantiated object 
             var config_ = parseConfig( content, filename );
-            _verbose( PES_VERBOSE_ATOMICCONF, 'atom', config_ );
+            _verbose( EnvSettings.C.Verbose.ATOMICCONF, 'atom', config_ );
             // check that no public attribute is used at root
             if( config_ && Object.keys( config_ ).includes( 'public' )){
                 throw new Meteor.Error( 'It is not allowed to include public settings at server or public config files on <root> level! Error in file ' + assetPath( filename ) + '.' );
@@ -158,26 +158,26 @@ Meteor.startup( function(){
 	  //console.log( '4commerce-env-settings.startup()' );
 
     // extend the global settings
-    _verbose( PES_VERBOSE_SERVERCONF, 'extending with serverConfig' );
-    _verbose( PES_VERBOSE_SERVERCONF, 'Meteor.settings', Meteor.settings );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'extending with serverConfig' );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
 
     const serverConfig = getConfig( configPath, 'server' );
     Meteor.settings = Meteor.settings || {};
     _.merge( Meteor.settings, serverConfig );
 
-    _verbose( PES_VERBOSE_SERVERCONF, 'serverConfig', serverConfig );
-    _verbose( PES_VERBOSE_SERVERCONF, 'Meteor.settings', Meteor.settings );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'serverConfig', serverConfig );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
 
     // extend Meteor.settings.public
-    _verbose( PES_VERBOSE_PUBLICCONF, 'extending with publicConfig' );
-    _verbose( PES_VERBOSE_PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'extending with publicConfig' );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
 
     const publicConfig = getConfig( configPath, 'public' );
     Meteor.settings.public = Meteor.settings.public || {};
     _.merge( Meteor.settings.public, publicConfig );
 
-    _verbose( PES_VERBOSE_PUBLICCONF, 'publicConfig', publicConfig );
-    _verbose( PES_VERBOSE_PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'publicConfig', publicConfig );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
 
     // check if we need to append the new public settings also
     // to the runtime_environment. this happens, when no settings

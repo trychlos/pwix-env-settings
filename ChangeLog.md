@@ -2,13 +2,14 @@
 
 ## ChangeLog
 
-### 1.4.1-rc
+### 1.5.0-rc
 
     Release date: 
 
     - Merge defaults.js into config.js
     - Rename conf to _conf, making clearer it is private
     - configure() now acts both as a getter and a setter
+    - Replace exported PES_VERSBOSE_ constants and include them in exported EnvSettings global (bumping release candidate version)
 
 ### 1.4.0
 
@@ -32,7 +33,7 @@
         - by exporting only to the server
         - cleaning the files layout to have a server only structure
 
-    - Do not try to export undefined PES_VERBOSE_DEFINE
+    - Do not try to export undefined EnvSettings.C.Verbose.DEFINE
 
 ### 1.2.2
 

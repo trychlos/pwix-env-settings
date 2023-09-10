@@ -8,7 +8,7 @@ EnvSettings = {
     _conf: {},
 
     _defaults: {
-        verbosity: PES_VERBOSE_NONE
+        verbosity: EnvSettings.C.Verbose.NONE
     },
 
     /**
@@ -23,7 +23,7 @@ EnvSettings = {
             _.merge( EnvSettings._conf, EnvSettings._defaults, o );
         }
 	    // verbosity management _after_ having set the conf
-        _verbose( PES_VERBOSE_CONFIGURE, 'configure() with', o, 'building', EnvSettings._conf );
+        _verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o, 'building', EnvSettings._conf );
         // also acts as a getter
         return EnvSettings._conf;
     }

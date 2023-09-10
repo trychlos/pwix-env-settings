@@ -48,47 +48,47 @@ Single known configuration option is:
 
     Accepted values are:
 
-    - `PES_VERBOSE_NONE`
+    - `EnvSettings.C.Verbose.NONE`
 
         No verbose at all.
 
-    - `PES_VERBOSE_CONFIGURE`
+    - `EnvSettings.C.Verbose.CONFIGURE`
 
         Trace calls to `EnvSettings.configure()` and their result.
 
-    - `PES_VERBOSE_READY`
+    - `EnvSettings.C.Verbose.READY`
 
         Emit a message when the package is ready.
 
-    - `PES_VERBOSE_STARTUP_MARK`
+    - `EnvSettings.C.Verbose.STARTUP_MARK`
 
         Emit a message when the package runs Meteor.startup().
 
-    - `PES_VERBOSE_STARTUP_DUMP`
+    - `EnvSettings.C.Verbose.STARTUP_DUMP`
 
         Dump `EnvSettings` object at Meteor.startup().
 
-    - `PES_VERBOSE_SERVERDIR`
+    - `EnvSettings.C.Verbose.SERVERDIR`
 
         Trace the server directory where settings are read from.
 
-    - `PES_VERBOSE_CONFIGPATH`
+    - `EnvSettings.C.Verbose.CONFIGPATH`
 
         Trace the private configuration directory.
 
-    - `PES_VERBOSE_LOADFILE`
+    - `EnvSettings.C.Verbose.LOADFILE`
 
         Trace each individual filename at the time it is loaded.
 
-    - `PES_VERBOSE_SERVERCONF`
+    - `EnvSettings.C.Verbose.SERVERCONF`
 
         Trace the loading of `config/server` settings.
 
-    - `PES_VERBOSE_PUBLICCONF`
+    - `EnvSettings.C.Verbose.PUBLICCONF`
 
         Trace the loading of `config/public` settings.
 
-    - `PES_VERBOSE_ATOMICCONF`
+    - `EnvSettings.C.Verbose.ATOMICCONF`
 
         Trace the content of each individual file at the time it is loaded.
 

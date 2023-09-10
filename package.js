@@ -9,18 +9,7 @@ Package.describe({
 Package.onUse( function( api ){
     configure( api );
     api.export([
-        'EnvSettings',
-        'PES_VERBOSE_NONE',
-        'PES_VERBOSE_CONFIGURE',
-        'PES_VERBOSE_READY',
-        'PES_VERBOSE_STARTUP_MARK',
-        'PES_VERBOSE_STARTUP_DUMP',
-        'PES_VERBOSE_SERVERDIR',
-        'PES_VERBOSE_CONFIGPATH',
-        'PES_VERBOSE_LOADFILE',
-        'PES_VERBOSE_SERVERCONF',
-        'PES_VERBOSE_PUBLICCONF',
-        'PES_VERBOSE_ATOMICCONF'
+        'EnvSettings'
     ],
         'server'
     );
