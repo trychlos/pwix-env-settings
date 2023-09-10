@@ -10,6 +10,7 @@
     - Rename conf to _conf, making clearer it is private
     - configure() now acts both as a getter and a setter
     - Replace exported PES_VERSBOSE_ constants and include them in exported EnvSettings global (bumping release candidate version)
+    - Bump required Meteor to 2.13.2
 
 ### 1.4.0
 

@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:env-settings',
-    version: '1.4.1-rc',
+    version: '1.5.0-rc',
     summary: 'Autoload settings (YAML, JSON) for server and client from private assets based on NODE_ENV.',
     git: 'https://github.com/trychlos/pwix-env-settings',
     documentation: 'README.md'
@@ -24,7 +24,7 @@ Package.onTest( function( api ){
 });
 
 function configure( api ){
-    api.versionsFrom( '2.9.0' );
+    api.versionsFrom( '2.13.2' );
     api.use( 'ecmascript', 'server' );
     api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.use( 'udondan:yml@3.2.2_1', 'server' );
