@@ -102,7 +102,7 @@ In case of support or error, please report your issue request to our [Issues tra
 
 ## Dependencies
 
-As of v 1.4.0, `underscore` and `meteorblackbelt:underscore-deep` dependencies are replaced with `lodash`.
+As of v 1.5.0, `underscore` and `meteorblackbelt:underscore-deep` dependencies are replaced with `lodash`.
 
 ## Original documentation
 
@@ -111,7 +111,7 @@ The rest of this documentation is originally from **4commerce**. See also [the G
 It may have been fixed for some typos.
 
 P. Wieser
-- Last updated on 2023, June 20th
+- Last updated on 2023, Sept. 10th
 
 ----
 

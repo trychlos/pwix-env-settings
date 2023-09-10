@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.5.0-rc
+### 1.5.0
 
-    Release date: 
+    Release date: 2023- 9-10
 
     - Merge defaults.js into config.js
     - Rename conf to _conf, making clearer it is private
@@ -51,4 +51,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, June 20th
+- Last updated on 2023, Sept. 10th
