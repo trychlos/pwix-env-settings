@@ -111,7 +111,7 @@ The rest of this documentation is originally from **4commerce**. See also [the G
 It may have been fixed for some typos.
 
 P. Wieser
-- Last updated on 2023, Sept. 10th
+- Last updated on 2023, Sept. 12th
 
 ----
 
