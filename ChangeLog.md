@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Back to Meteor 2.9.0
 
 ### 1.5.1
 

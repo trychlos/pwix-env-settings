@@ -24,7 +24,7 @@ Package.onTest( function( api ){
 });
 
 function configure( api ){
-    api.versionsFrom( '2.13.2' );
+    api.versionsFrom( '2.9.0' );
     api.use( 'ecmascript', 'server' );
     api.use( 'tmeasday:check-npm-versions@1.0.2', 'server' );
     api.use( 'udondan:yml@3.2.2_1', 'server' );
