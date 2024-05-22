@@ -1,7 +1,7 @@
 Package.describe({
     name: 'pwix:env-settings',
-    version: '1.5.3-rc',
-    summary: 'Autoload settings (YAML, JSON) from (server-only) private assets based on NODE_ENV.',
+    version: '1.6.0-rc',
+    summary: 'Autoload settings (YAML, JSON) from (server-only) private assets based on APP_ENV (defaulting to NODE_ENV).',
     git: 'https://github.com/trychlos/pwix-env-settings',
     documentation: 'README.md'
 });

@@ -147,8 +147,8 @@ function getConfig( configPath, scope ){
 
     loadConfigFiles( locateFiles( configPath, false, match_file_) , config );
     loadConfigFiles( locateFiles( files.pathJoin( configPath, scope), false, match_files_ ), config );
-    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.NODE_ENV) , false, match_file_ ), config );
-    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.NODE_ENV, scope ), false, match_files_), config );
+    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.APP_ENV || process.env.NODE_ENV) , false, match_file_ ), config );
+    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.APP_ENV || process.env.NODE_ENV, scope ), false, match_files_), config );
 
     return config;
 }
@@ -195,11 +195,11 @@ Meteor.startup( function(){
 
     // extend Meteor.settings and Meteor.settings.public with some useful addtional attributes
     Meteor.settings.runtime = {
-        env: process.env.NODE_ENV,
+        env: process.env.APP_ENV || process.env.NODE_ENV,
         serverDir: serverDir    
     }
     Meteor.settings.public.runtime = {
-        env: process.env.NODE_ENV
+        env: process.env.APP_ENV || process.env.NODE_ENV
     }
 
     // advertize that the package is ready

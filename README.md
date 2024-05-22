@@ -96,6 +96,16 @@ Also note, as an explicit reminder, that, because the Meteor packages are instan
 
 You have been warned: **only the application should configure the package**.
 
+## Environment management
+
+While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that many more would be better, and that we should not be tied to such only three parts.
+
+We so use the `APP_ENV` environment variable to address our own environment identifier. Through this identifier, we ask the server to publish the setings recorded inside of its private settings.
+
+The settings are read from the server settings for this environment through the path `Meteor.settings[APP.name].environments[<environment_identifier>]`.
+
+If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
+
 ## Issues & help
 
 In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).

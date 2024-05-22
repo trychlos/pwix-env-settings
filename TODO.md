@@ -10,7 +10,6 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    5 | 2024- 5-22 | honors APP_ENV |
 |    6 | 2024- 5-22 |  |
 
 ---
@@ -29,6 +28,8 @@
 |      | 2024- 5-22 | done for 1.5.3 |
 |    4 | 2024- 5-22 | udondan:yml is obsoleted - See https://github.com/udondan/meteor-yml/ |
 |      | 2024- 5-22 | replaced with the NPM dependency on js-yaml 4.1.0 - done for 1.5.3 |
+|    5 | 2024- 5-22 | honors APP_ENV |
+|      | 2024- 5-22 | defaulting to NODE_ENV if process.env.APP_ENV is not set - done for 1.5.3 |
 
 ---
 P. Wieser

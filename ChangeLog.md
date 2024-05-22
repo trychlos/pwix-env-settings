@@ -2,11 +2,13 @@
 
 ## ChangeLog
 
-### 1.5.3-rc
+### 1.6.0-rc
 
     Release date: 
 
-    - 
+    - Meteor 3.0 ready (todo #3)
+    - obsolete undondan:yml package dependency, replaced with a dependency on NPM js-yaml (todo #4)
+    - honors APP_ENV environment variable, defaulting to NODE_ENV (todo #5) - bumping the candidate release number
 
 ### 1.5.2
 
