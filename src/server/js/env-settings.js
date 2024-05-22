@@ -33,6 +33,7 @@
  */
 
 import _ from 'lodash';
+import YAML from 'js-yaml';
 
 // use for file access
 var fs = Npm.require('fs');

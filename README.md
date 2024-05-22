@@ -100,9 +100,24 @@ You have been warned: **only the application should configure the package**.
 
 In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).
 
-## Dependencies
+## NPM peer dependencies
 
 As of v 1.5.0, `underscore` and `meteorblackbelt:underscore-deep` dependencies are replaced with `lodash`.
+
+Starting with v 1.4.0, and in accordance with advices from [the Meteor Guide](https://guide.meteor.com/writing-atmosphere-packages.html#npm-dependencies), we no more hardcode NPM dependencies in the `Npm.depends` clause of the `package.js`. 
+
+Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
+
+Dependencies as of v 1.5.3:
+```
+    'lodash': '^4.17.21',
+    'js-yaml': '^4.1.0'
+```
+
+Each of these dependencies should be installed at application level:
+```
+    meteor npm install <package> --save
+```
 
 ## Original documentation
 

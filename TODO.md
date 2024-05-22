@@ -10,7 +10,8 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    3 |  |  |
+|    5 | 2024- 5-22 | honors APP_ENV |
+|    6 | 2024- 5-22 |  |
 
 ---
 ## Done
@@ -24,6 +25,10 @@
 |      |            | fixed in v 1.3.0 |
 |    2 | 2023- 5-12 | a 'ready' status is advertized at startup() time - replace it with a reactive data source when actually ready |
 |      | 2023- 5-12 | done in v 1.3.0 |
+|    3 | 2024- 5-22 | Have to migrate to Meteor 3.0 |
+|      | 2024- 5-22 | done for 1.5.3 |
+|    4 | 2024- 5-22 | udondan:yml is obsoleted - See https://github.com/udondan/meteor-yml/ |
+|      | 2024- 5-22 | replaced with the NPM dependency on js-yaml 4.1.0 - done for 1.5.3 |
 
 ---
 P. Wieser
