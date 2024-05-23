@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 1.6.0-rc
+### 1.6.0
 
-    Release date: 
+    Release date: 2024- 5-23
 
     - Meteor 3.0 ready (todo #3)
     - obsolete undondan:yml package dependency, replaced with a dependency on NPM js-yaml (todo #4)
@@ -71,4 +71,4 @@
 
 ---
 P. Wieser
-- Last updated on 2023, Sept. 12th
+- Last updated on 2024, May. 23rd
