@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix #6: only trying to interpret as YML
 
 ### 1.6.0
 

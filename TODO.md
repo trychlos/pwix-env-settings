@@ -10,7 +10,7 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    6 | 2024- 5-22 |  |
+|    7 |  |  |
 
 ---
 ## Done
@@ -30,6 +30,9 @@
 |      | 2024- 5-22 | replaced with the NPM dependency on js-yaml 4.1.0 - done for 1.5.3 |
 |    5 | 2024- 5-22 | honors APP_ENV |
 |      | 2024- 5-22 | defaulting to NODE_ENV if process.env.APP_ENV is not set - done for 1.5.3 |
+|    6 | 2024- 5-29 | [Error]: [The content of file config/server/environments.json does not contain valid YAML!] |
+|      |            | at parseConfig (packages/pwix:env-settings/src/server/js/env-settings.js:133:15) |
+|      | 2024- 5-29 | fixed |
 
 ---
 P. Wieser
