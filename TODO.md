@@ -10,7 +10,8 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    7 |  |  |
+|    7 | 2024- 5-30 | Do not wait for Meteor.startup to load settings: is it possible ? |
+|    8 |  |
 
 ---
 ## Done
