@@ -1,5 +1,5 @@
 /*
- * pwix:env-settings/src/server/js/config.js
+ * pwix:env-settings/src/common/js/configure.js
  */
 
 import _ from 'lodash';
@@ -7,7 +7,7 @@ import _ from 'lodash';
 EnvSettings._conf = {};
 
 EnvSettings._defaults = {
-    verbosity: EnvSettings.C.Verbose.NONE
+    verbosity: EnvSettings.C.Verbose.READY
 };
 
 /**

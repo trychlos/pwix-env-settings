@@ -10,7 +10,6 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    7 | 2024- 5-30 | Do not wait for Meteor.startup to load settings: is it possible ? |
 |    8 |  |
 
 ---
@@ -34,6 +33,10 @@
 |    6 | 2024- 5-29 | [Error]: [The content of file config/server/environments.json does not contain valid YAML!] |
 |      |            | at parseConfig (packages/pwix:env-settings/src/server/js/env-settings.js:133:15) |
 |      | 2024- 5-29 | fixed |
+|    7 | 2024- 5-30 | Do not wait for Meteor.startup to load settings: is it possible ? |
+|      | 2024- 6 -1 | Possible with the drawback that the configuration cannot be called by the application before the assets have been read |
+|      |            | in other words, the only configuration this package accepts takes effect after its main job... |
+|      |            | The behavior is controlled by a common constant |
 
 ---
 P. Wieser

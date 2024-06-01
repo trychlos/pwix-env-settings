@@ -2,11 +2,11 @@
 
 ## ChangeLog
 
-### 1.6.2-rc
+### 2.0.0-rc
 
     Release date: 
 
-    - 
+    - The package is extended to the client side to let public settings land to the client (thus bumping the candidate release number)
 
 ### 1.6.1
 

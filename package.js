@@ -1,6 +1,6 @@
 Package.describe({
     name: 'pwix:env-settings',
-    version: '1.6.2-rc',
+    version: '2.0.0-rc',
     summary: 'Autoload settings (YAML, JSON) from (server-only) private assets based on running environment.',
     git: 'https://github.com/trychlos/pwix-env-settings',
     documentation: 'README.md'
@@ -10,9 +10,8 @@ Package.onUse( function( api ){
     configure( api );
     api.export([
         'EnvSettings'
-    ],
-        'server'
-    );
+    ]);
+    api.mainModule( 'src/client/js/index.js', 'client' );
     api.mainModule( 'src/server/js/index.js', 'server' );
 });
 
@@ -25,9 +24,9 @@ Package.onTest( function( api ){
 
 function configure( api ){
     api.versionsFrom([ '2.9.0', '3.0-rc.0' ]);
-    api.use( 'ecmascript', 'server' );
+    api.use( 'ecmascript' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
-    api.use( 'tracker', 'server' );
+    api.use( 'tracker' );
 }
 
 // NPM dependencies are checked in /src/server/js/check_npms.js

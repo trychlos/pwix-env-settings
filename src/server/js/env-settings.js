@@ -157,7 +157,7 @@ function parseConfig( content, filename ){
     }
 }
 
-// this packages will autoload settings from private assets folder
+// this package autoloads settings from private/config assets folder
 // located at private/config (see function getConfig)
 Meteor.startup( function(){
 	  //console.log( '4commerce-env-settings.startup()' );

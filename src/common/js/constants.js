@@ -1,8 +1,9 @@
 /*
- * pwix:env-settings/src/server/js/constants.js
+ * pwix:env-settings/src/commoon/js/constants.js
  */
 
 EnvSettings.C = {
+
     // Verbosity levels
     Verbose: {
         NONE:         0,

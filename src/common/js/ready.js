@@ -30,4 +30,5 @@ Tracker.autorun(() => {
     if( EnvSettings.ready() && EnvSettings._conf.verbosity & EnvSettings.C.Verbose.READY ){
         console.log( 'pwix:env-settings ready' );
     }
+    console.debug( 'pwix:env-settings ready', EnvSettings.ready());
 });
