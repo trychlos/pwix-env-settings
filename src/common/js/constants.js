@@ -17,5 +17,10 @@ EnvSettings.C = {
         SERVERCONF:   0x01 <<  7,
         PUBLICCONF:   0x01 <<  8,
         ATOMICCONF:   0x01 <<  9
-    }
+    },
+
+    // whether to wait for the Meteor startup() to load the configuration private assets
+    // this should be done by the application, but the package is initialized before the former
+    // starting with 2.0.0, we do not wait for startup, but is easy here to fallback to the historic behavior
+    WaitForStartup: false
 };

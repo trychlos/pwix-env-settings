@@ -27,8 +27,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    if( EnvSettings.ready() && EnvSettings._conf.verbosity & EnvSettings.C.Verbose.READY ){
-        console.log( 'pwix:env-settings ready' );
-    }
-    console.debug( 'pwix:env-settings ready', EnvSettings.ready());
+    _verbose( EnvSettings.C.Verbose.READY, 'pwix:env-settings ready', EnvSettings.ready());
 });

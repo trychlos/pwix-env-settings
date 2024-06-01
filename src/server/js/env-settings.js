@@ -159,7 +159,7 @@ function parseConfig( content, filename ){
 
 // this package autoloads settings from private/config assets folder
 // located at private/config (see function getConfig)
-Meteor.startup( function(){
+function parsePrivate(){
 	  //console.log( '4commerce-env-settings.startup()' );
 
     // extend the global settings
@@ -208,4 +208,12 @@ Meteor.startup( function(){
 
     // advertize that the package is ready
     EnvSettings.ready( true );
-});
+}
+
+if( EnvSettings.C.WaitForStartup ){
+    Meteor.startup(() => {
+        parsePrivate();
+    });
+} else {
+    parsePrivate();
+}

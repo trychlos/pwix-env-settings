@@ -8,8 +8,6 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 - fortunatly, I was been able to fix the issue I encountered
 - so this package ;)
 
-Also please note that this package is a server-side **only** package. This is the reason why exports are only defined on server-side.
-
 ## Installation
 
 ```
@@ -17,6 +15,8 @@ Also please note that this package is a server-side **only** package. This is th
 ```
 
 ## Provides
+
+On client side, the package sets the `Meteor.settings` object to the public configuration assets read from (server-side) private/config/public folder
 
 ### Global object
 
@@ -30,11 +30,9 @@ Also please note that this package is a server-side **only** package. This is th
 
 - `EnvSettings.ready()`
 
-    A getter/setter method which get/set the readyness status of the package.
+    A reactive getter/setter method which get/set the readyness status of the package.
 
     The package is considered ready when all configuration files have been loaded.
-
-    Note that these actions are taken at `Meteor.startup()` time. There is no chance that the package be ready before that.
 
 ## Configuration
 
