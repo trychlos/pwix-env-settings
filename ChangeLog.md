@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.0.1-rc
+### 2.0.1
 
-    Release date: 
+    Release date: 2024- 6- 2
 
     - Fix the ready() propagation to the clients (todo #8), adding a new dependency on Mongo
 
