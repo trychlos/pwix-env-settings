@@ -10,7 +10,7 @@
 
 |   Id | Date       | Description and comment(s) |
 | ---: | :---       | :---                       |
-|    8 |  |
+|    9 |  |  |
 
 ---
 ## Done
@@ -37,6 +37,8 @@
 |      | 2024- 6 -1 | Possible with the drawback that the configuration cannot be called by the application before the assets have been read |
 |      |            | in other words, the only configuration this package accepts takes effect after its main job... |
 |      |            | The behavior is controlled by a common constant |
+|    8 | 2024- 6- 2 | BUG: ready() is not propagated to the client |
+|      | 2024- 6- 2 | Fixed, requiring a new 'Mongo' dependency |
 
 ---
 P. Wieser

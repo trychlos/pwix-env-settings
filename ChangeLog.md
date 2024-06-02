@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix the ready() propagation to the clients (todo #8), adding a new dependency on Mongo
 
 ### 2.0.0
 

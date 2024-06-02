@@ -1,5 +1,5 @@
 /*
- * pwix:env-settings/src/server/js/ready.js
+ * pwix:env-settings/src/common/js/ready.js
  */
 
 import { Tracker } from 'meteor/tracker';
