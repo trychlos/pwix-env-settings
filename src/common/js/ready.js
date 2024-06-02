@@ -27,5 +27,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    _verbose( EnvSettings.C.Verbose.READY, 'pwix:env-settings ready', EnvSettings.ready());
+    _verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready());
 });

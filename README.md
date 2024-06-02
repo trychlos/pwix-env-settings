@@ -16,7 +16,50 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 
 ## Provides
 
-On client side, the package sets the `Meteor.settings` object to the public configuration assets read from (server-side) private/config/public folder
+On client side, the package sets the `Meteor.settings.public` object to the public configuration read from (server-side) `private/config/public` folder, and adds a `runtime: { env: <env> }` to it, giving something like:
+
+```
+    {
+        public: {                                                             <- the `public` leaf of the server tree
+            comments: [                                                       ^
+                'General env-settings package configuration',                 |
+                'see https://atmospherejs.com/pwix/env-settings'              |
+            ],                                                                | the merged content of all yaml/json files found under `private/config/public` folder.
+            persistent_session: { default_method: 'persistent' },             |
+            myConfig: {                                                       |
+                a_key: [Object],                                              |
+                version: '23.05.17.4'                                         |
+            },                                                                v
+            runtime: { env: 'dev:0' }                                         <- dynamically added by the package
+        }
+    }
+```
+
+On server side, the package sets the same `Meteor.settings.public` object than on the client side, and adds to ``Meteor.settings`` the full merged content of the `private/config/server` folder, giving something like:
+
+```
+    {
+        public: {
+            comments: [
+                'General env-settings package configuration',
+                'see https://atmospherejs.com/pwix/env-settings'
+            ],
+            persistent_session: { default_method: 'persistent' },
+            myConfig: {
+                a_key: [Object],
+                version: '23.05.17.4'
+            },
+            runtime: { env: 'dev:0' }
+          },
+          myServerConfig: {
+              ...
+          },
+          runtime: {
+              env: 'dev:0',
+              serverDir: '/home/pierre/data/eclipse/iziam/.meteor/local/build/programs/server'
+          }
+    }
+```
 
 ### Global object
 
@@ -38,7 +81,16 @@ On client side, the package sets the `Meteor.settings` object to the public conf
 
 The package's behavior can be configured through a call to the `EnvSettings.configure()` method, with just a single javascript object argument, which itself should only contains the options you want override.
 
-Single known configuration option is:
+Known configuration options are:
+
+- `onReady`
+
+    An optional function to be executed on the server-side when both the package has been configured and the `EnvSettings.ready()` reactive function has become true:
+
+    - either after the configuration assets have been loaded if the package is configured to wait for startup
+    - or immediately (at configuration time) if the configuration assets have already been loaded.
+
+    The function is called without argument, and we you should not expect anything of its return value.
 
 - `verbosity`
 
@@ -103,6 +155,14 @@ We so use the `APP_ENV` environment variable to address our own environment iden
 The settings are read from the server settings for this environment through the path `Meteor.settings[APP.name].environments[<environment_identifier>]`.
 
 If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
+
+## When configuration assets are they loaded ?
+
+Historically, configuration assets were loaded at `Meteor.startup()` time.
+
+Starting with v2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
+
+This behavior is hard-coded, and controlled through the `EnvSettings.C.WaitForStartup` constant.
 
 ## Issues & help
 

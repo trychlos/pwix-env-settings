@@ -6,3 +6,4 @@ import '../../common/js/index.js';
 
 import './check_npms.js';
 import './env-settings.js';
+import './on_ready.js';

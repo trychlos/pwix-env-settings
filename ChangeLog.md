@@ -9,6 +9,7 @@
     - The package is extended to the client side to let public settings land to the client (thus bumping the candidate release number)
     - No more wait for Meteor.startup() to load private configuration assets (todo #7)
       the verbosity configuration becomes obsolete, this can be controlled through the hardcoded EnvSettings.C.WaitForStartup constant
+    - Introduce onReady() configuration function
 
 ### 1.6.1
 
