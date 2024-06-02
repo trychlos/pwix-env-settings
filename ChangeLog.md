@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.0.0-rc
+### 2.0.0
 
-    Release date: 
+    Release date: 2024- 6- 2
 
     - The package is extended to the client side to let public settings land to the client (thus bumping the candidate release number)
     - No more wait for Meteor.startup() to load private configuration assets (todo #7)
@@ -86,4 +86,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, May. 29th
+- Last updated on 2024, Jun. 2nd
