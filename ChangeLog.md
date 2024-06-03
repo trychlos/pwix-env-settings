@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Be a bit more verbose on configuration, just enough to have a timeline of the initialization
 
 ### 2.0.1
 

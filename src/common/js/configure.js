@@ -12,7 +12,7 @@ EnvSettings._configured = new ReactiveVar( false );
 
 EnvSettings._defaults = {
     onReady(){},
-    verbosity: EnvSettings.C.Verbose.READY
+    verbosity: EnvSettings.C.Verbose.CONFIGURE | EnvSettings.C.Verbose.READY
 };
 
 /**
@@ -27,7 +27,7 @@ EnvSettings.configure = function( o ){
         _.merge( EnvSettings._conf, EnvSettings._defaults, o );
     }
     // verbosity management _after_ having set the conf
-    _verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o, 'building', EnvSettings._conf );
+    _verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o );
     EnvSettings._configured.set( true );
     // also acts as a getter
     return EnvSettings._conf;
