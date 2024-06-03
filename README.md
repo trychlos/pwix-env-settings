@@ -50,14 +50,14 @@ On server side, the package sets the same `Meteor.settings.public` object than o
                 version: '23.05.17.4'
             },
             runtime: { env: 'dev:0' }
-          },
-          myServerConfig: {
-              ...
-          },
-          runtime: {
-              env: 'dev:0',
-              serverDir: '/home/pierre/data/eclipse/iziam/.meteor/local/build/programs/server'
-          }
+        },
+        myServerConfig: {
+            ...
+        },
+        runtime: {
+            env: 'dev:0',
+            serverDir: '/home/pierre/data/eclipse/iziam/.meteor/local/build/programs/server'
+        }
     }
 ```
 
