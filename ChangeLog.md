@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.0.2-rc
+### 2.0.2
 
-    Release date:
+    Release date: 2024- 6-13
 
     - Be a bit more verbose on configuration, just enough to have a timeline of the initialization
     - Update README
@@ -99,4 +99,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, Jun. 2nd
+- Last updated on 2024, Jun. 13th
