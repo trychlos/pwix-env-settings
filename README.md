@@ -8,17 +8,59 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 - fortunatly, I was been able to fix the issue I encountered
 - so this package ;)
 
+## What is it ?
+
+This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your private assets directory. The configuration files will be autoloaded during startup based on the active environment.
+
+Now you can easily switch between settings just by changing the NODE_ENV variable.
+
+The package also allows to specify different configuration files for server and public settings.
+
+Last but not least you can divide your configuration files into partials and get them merged and overloaded during startup. You can define defaults and redefine only a few afterwards based on the active environment (see samples below).
+
+The config files may be written (also mixed) in YAML and JSON notation.
+
 ## Installation
 
-```
+This Meteor package is installable with the usual command:
+
+```sh
     meteor add pwix:env-settings
 ```
 
+## Usage
+
+As simple as:
+
+```js
+    import { EnvSettings } from 'meteor/pwix:env-settings';
+```
+
+### Environment management
+
+While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that many more would be better, and that we should not be tied to such only three parts.
+
+We so use the `APP_ENV` environment variable to address our own environment identifier. Through this identifier, we ask the server to publish the setings recorded inside of its private settings.
+
+The settings are read from the server settings for this environment through the path `Meteor.settings[APP.name].environments[<environment_identifier>]`.
+
+If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
+
+### When configuration assets are they loaded ?
+
+Historically, configuration assets were loaded at `Meteor.startup()` time.
+
+Starting with v2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
+
+This behavior is hard-coded, and controlled through the `EnvSettings.C.WaitForStartup` constant.
+
 ## Provides
+
+### Client side
 
 On client side, the package sets the `Meteor.settings.public` object to the public configuration read from (server-side) `private/config/public` folder, and adds a `runtime: { env: <env> }` to it, giving something like:
 
-```
+```js
     {
         public: {                                                             <- the `public` leaf of the server tree
             comments: [                                                       ^
@@ -35,9 +77,11 @@ On client side, the package sets the `Meteor.settings.public` object to the publ
     }
 ```
 
+### Server side
+
 On server side, the package sets the same `Meteor.settings.public` object than on the client side, and adds to ``Meteor.settings`` the full merged content of the `private/config/server` folder, giving something like:
 
-```
+```js
     {
         public: {
             comments: [
@@ -61,21 +105,23 @@ On server side, the package sets the same `Meteor.settings.public` object than o
     }
 ```
 
-### Global object
+### `EnvSettings`
 
-`EnvSettings`
+The exported `EnvSettings` global object provides following items:
 
-### Methods
+#### Functions
 
-- `EnvSettings.configure()`
+##### `EnvSettings.configure()`
 
-    The configuration method. See below.
+    The configuration method. See [below](#configuration).
 
-- `EnvSettings.ready()`
+##### `EnvSettings.ready()`
 
     A reactive getter/setter method which get/set the readyness status of the package.
 
     The package is considered ready when all configuration files have been loaded.
+
+    Available both on the client and the server (though less useful in this later).
 
 ## Configuration
 
@@ -146,28 +192,6 @@ Also note, as an explicit reminder, that, because the Meteor packages are instan
 
 You have been warned: **only the application should configure the package**.
 
-## Environment management
-
-While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that many more would be better, and that we should not be tied to such only three parts.
-
-We so use the `APP_ENV` environment variable to address our own environment identifier. Through this identifier, we ask the server to publish the setings recorded inside of its private settings.
-
-The settings are read from the server settings for this environment through the path `Meteor.settings[APP.name].environments[<environment_identifier>]`.
-
-If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
-
-## When configuration assets are they loaded ?
-
-Historically, configuration assets were loaded at `Meteor.startup()` time.
-
-Starting with v2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
-
-This behavior is hard-coded, and controlled through the `EnvSettings.C.WaitForStartup` constant.
-
-## Issues & help
-
-In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).
-
 ## NPM peer dependencies
 
 As of v 1.5.0, `underscore` and `meteorblackbelt:underscore-deep` dependencies are replaced with `lodash`.
@@ -187,34 +211,25 @@ Each of these dependencies should be installed at application level:
     meteor npm install <package> --save
 ```
 
+## Translations
+
+None at the moment.
+
+## Cookies and comparable technologies
+
+None at the moment.
+
+## Issues & help
+
+In case of support or error, please report your issue request to our [Issues tracker](https://github.com/trychlos/pwix-env-settings/issues).
+
 ## Original documentation
 
 The rest of this documentation is originally from **4commerce**. See also [the Github original repository](https://github.com/4commerce-technologies-AG/meteor-package-env-settings/).
 
-It may have been fixed for some typos.
-
-P. Wieser
-- Last updated on 2024, Jun. 2nd
+It may have been fixed for some typos, and have removed some obsolete sentences.
 
 ----
-
-This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your private assets directory. The configuration files will be autoloaded during startup based on the active environment.
-
-Now you can easily switch between settings just by changing the NODE_ENV variable.
-
-The package also allows to specify different configuration files for server and public settings.
-
-Last but not least you can divide your configuration files into partials and get them merged and overloaded during startup. You can define defaults and redefine only a few afterwards based on the active environment (see samples below).
-
-The config files may be written (also mixed) in YAML and JSON notation. 
-
-### Installation
-
-You can add this package to your meteor app like any other package from atmosphere
-
-````
-$ meteor add 4commerce:env-settings
-````
 
 ### Directory structure
 
@@ -425,7 +440,7 @@ smtp:
   server: mail.trash
 ````
 
-Be aware that the rules of overloading and file ordering is still the same. 
+Be aware that the rules of overloading and file ordering is still the same.
 
 _Attention_: It is not necessary for the loader that the partials have the same filename at all environments – but, I advise you to name them equal for clearness.
 
@@ -442,7 +457,7 @@ As said in previous paragraph, you still can load some values to your settings v
 From release 1.2.0 we dropped the dependencies to our helper packages. If you want to get easy access to your public settings while working on your templates, we advise you to install one or both of our template helpers for that.
 
 ##### meteor-namespace-template-helper
- 
+
 See package [4commerce:meteor-namespace-template-helper](https://atmospherejs.com/4commerce/meteor-namespace-template-helper). This package brings the Meteor namespace (Meteor.user, Meteor.settings.public etc.) directly to templates.
 
 *Example:*
@@ -477,12 +492,6 @@ The object properties of Meteor.settings are always writeable. We highly advise 
 
 The loading process will automatically merge the public settings at the `Meteor.settings.public` element. Therefore and to make sure that you have not made a typing error, we denied the occurence of a `public` element at root level inside your public and server configurations (only at root level). This should avoid (miss-typed) structures like `Meteor.settings.public.public`. In such a case an error is thrown with the identification of the false file.
 
-### Package dependencies
-
-When you add this package, following dependencies will load:
-
-1. [udondan:yml](https://atmospherejs.com/udondan/yml)
-
 ### Related packages
 
 When you add this package, following may be useful to add:
@@ -490,12 +499,12 @@ When you add this package, following may be useful to add:
 1. [4commerce:meteor-namespace-template-helper](https://atmospherejs.com/4commerce/meteor-namespace-template-helper)
 2. [4commerce:pubsettings-template-helper](https://atmospherejs.com/4commerce/pubsettings-template-helper)
 
-### Issues & help
-
-In case of support or error please report your issue request. The issue tracker is available at: https://github.com/4commerce-technologies-AG/meteor-package-env-settings/issues
-
 ### Author & Credits
 
 Author: [Tom Freudenberg, 4commerce technologies AG](http://about.me/tom.freudenberg)
 
 Copyright (c) 2015 [Tom Freudenberg](http://www.4commerce.de/), [4commerce technologies AG](http://www.4commerce.de/), released under the MIT license
+
+---
+P. Wieser
+- Last updated on 2024, Jun. 2nd

@@ -4,9 +4,10 @@
 
 ### 2.0.2-rc
 
-    Release date: 
+    Release date:
 
     - Be a bit more verbose on configuration, just enough to have a timeline of the initialization
+    - Update README
 
 ### 2.0.1
 
