@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Rename internal ready publication
 
 ### 2.0.2
 

@@ -25,8 +25,8 @@ EnvSettings.C = {
     WaitForStartup: false,
 
     // an internal publication to let the server propagates the 'ready' status to the clients
-    _publicationName: 'EnvSettings.Ready',
-
-    // the collection managed by the internal publication above
-    _collectionName: 'EnvSettings.Ready'
+    readyPub: {
+        publication: 'pwix:env-settings.ready.publication',
+        collection: 'pwix:env-settings.ready.collection'
+    }
 };

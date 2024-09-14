@@ -4,8 +4,8 @@
 
 import { Mongo } from 'meteor/mongo';
 
-_handle = Meteor.subscribe( EnvSettings.C._publicationName );
-_collectionDB = new Mongo.Collection( EnvSettings.C._collectionName );
+_handle = Meteor.subscribe( EnvSettings.C.readyPub.publication );
+_collectionDB = new Mongo.Collection( EnvSettings.C.readyPub.collection );
 
 Tracker.autorun(() => {
     if( _handle.ready()){
