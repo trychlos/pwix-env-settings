@@ -10,10 +10,12 @@ _ready = {
 };
 
 /**
+ * @locus Anywhere
  * @summary Set/Get the readyness status of the package
  *  the package is considered as 'ready' when it has finished to read and load all the settings files
  * @param {Boolean|none} b a status to be set when acting as a setter
  * @returns {Boolean} the current readyness status
+ *  A reactive data source.
  */
 EnvSettings.ready = function( b ){
     if( b === true || b === false ){
