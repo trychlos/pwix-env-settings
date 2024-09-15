@@ -3,9 +3,9 @@
  */
 
 _verbose = function( level ){
-    let _args = [ ...arguments ];
-    _args.shift();
-    if( EnvSettings._conf.verbosity & level ){
+    if( EnvSettings.configure().verbosity & level ){
+        let _args = [ ...arguments ];
+        _args.shift();
         console.log( 'pwix:env-settings', ..._args );
     }
 }

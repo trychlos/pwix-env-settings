@@ -16,7 +16,8 @@ EnvSettings.C = {
         LOADFILE:     0x01 <<  6,
         SERVERCONF:   0x01 <<  7,
         PUBLICCONF:   0x01 <<  8,
-        ATOMICCONF:   0x01 <<  9
+        ATOMICCONF:   0x01 <<  9,
+        RECONFIGURE:  0x01 << 10
     },
 
     // whether to wait for the Meteor startup() to load the configuration private assets

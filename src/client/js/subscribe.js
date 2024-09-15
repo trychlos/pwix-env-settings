@@ -5,11 +5,11 @@
 import { Mongo } from 'meteor/mongo';
 
 _handle = Meteor.subscribe( EnvSettings.C.readyPub.publication );
-_collectionDB = new Mongo.Collection( EnvSettings.C.readyPub.collection );
 
 Tracker.autorun(() => {
     if( _handle.ready()){
+        const _collectionDB = new Mongo.Collection( EnvSettings.C.readyPub.collection );
         const ready = _collectionDB.find().fetch()[0].ready;
-        EnvSettings.ready( ready );
+        EnvSettings.ready( Boolean( ready > 0 ));
     }
 });

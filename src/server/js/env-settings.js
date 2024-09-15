@@ -35,6 +35,8 @@
 import _ from 'lodash';
 import YAML from 'js-yaml';
 
+import { Tracker } from 'meteor/tracker';
+
 // use for file access
 var fs = Npm.require( 'fs' );
 // using this meteor lib, gives secure access to folder structure
@@ -56,6 +58,47 @@ _verbose( EnvSettings.C.Verbose.CONFIGPATH, 'configPath', configPath );
 // to the private asset ressource and not the absolute path from bundle
 function assetPath(path) {
     return path.replace( assetBundlePath, '' ).substring( 1 );
+}
+
+// this function autoloads settings from private/config assets folder
+// located at private/config (see function getConfig)
+function autoloadSettings(){
+	//console.debug( 'pwix:env-settings.autoloadSettings()' );
+
+    // extend the global settings
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'extending with serverConfig' );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
+
+    const serverConfig = getConfig( configPath, 'server' );
+    Meteor.settings = Meteor.settings || {};
+    _.merge( Meteor.settings, serverConfig );
+
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'serverConfig', serverConfig );
+    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
+
+    // extend Meteor.settings.public
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'extending with publicConfig' );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+
+    const publicConfig = getConfig( configPath, 'public' );
+    Meteor.settings.public = Meteor.settings.public || {};
+    _.merge( Meteor.settings.public, publicConfig );
+
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'publicConfig', publicConfig );
+    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+
+    // check if we need to append the new public settings also
+    // to the runtime_environment. this happens, when no settings
+    // before via --settings or METEOR_SETTINGS was set.
+    // taken from packages/meteor/server_environments.js
+    // Push a subset of settings to the client.
+    // ----
+    // if PR on github is accepted
+    // https://github.com/meteor/meteor/pull/4704
+    // then this won't be necessary anymore
+    if( typeof __meteor_runtime_config__ === 'object' ){
+        __meteor_runtime_config__.PUBLIC_SETTINGS = Meteor.settings.public;
+    }
 }
 
 // read complete set of config files and return a new settings object
@@ -157,63 +200,98 @@ function parseConfig( content, filename ){
     }
 }
 
+// the main load and initialization function
 // this package autoloads settings from private/config assets folder
 // located at private/config (see function getConfig)
 function parsePrivate(){
-	  //console.log( '4commerce-env-settings.startup()' );
 
-    // extend the global settings
-    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'extending with serverConfig' );
-    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
+    // load and merges the YML/JSON setting files
+    autoloadSettings();
 
-    const serverConfig = getConfig( configPath, 'server' );
-    Meteor.settings = Meteor.settings || {};
-    _.merge( Meteor.settings, serverConfig );
+    // setup the APP_ENV runtime
+	setupEnv();
 
-    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'serverConfig', serverConfig );
-    _verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
-
-    // extend Meteor.settings.public
-    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'extending with publicConfig' );
-    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
-
-    const publicConfig = getConfig( configPath, 'public' );
-    Meteor.settings.public = Meteor.settings.public || {};
-    _.merge( Meteor.settings.public, publicConfig );
-
-    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'publicConfig', publicConfig );
-    _verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
-
-    // check if we need to append the new public settings also
-    // to the runtime_environment. this happens, when no settings
-    // before via --settings or METEOR_SETTINGS was set.
-    // taken from packages/meteor/server_environments.js
-    // Push a subset of settings to the client.
-    // ----
-    // if PR on github is accepted
-    // https://github.com/meteor/meteor/pull/4704
-    // then this won't be necessary anymore
-    if( typeof __meteor_runtime_config__ === 'object' ){
-        __meteor_runtime_config__.PUBLIC_SETTINGS = Meteor.settings.public;
-    }
-
-    // extend Meteor.settings and Meteor.settings.public with some useful addtional attributes
-    Meteor.settings.runtime = {
-        env: process.env.APP_ENV || process.env.NODE_ENV,
-        serverDir: serverDir    
-    }
-    Meteor.settings.public.runtime = {
-        env: process.env.APP_ENV || process.env.NODE_ENV
-    }
+    // make the server environment settings available to the client
+    settingsToClient();
 
     // advertize that the package is ready
     EnvSettings.ready( true );
 }
+
+// [chatgpt code] filter the private data
+function removePrivateKeys( obj ){
+    // If the input is not an object or array, return it as it is (base case)
+    if( typeof obj !== 'object' || obj === null ){
+        return obj;
+    }
+    // If the input is an array, recursively process each element
+    if( Array.isArray( obj )){
+        return obj.map( removePrivateKeys );
+    }
+    // If the input is an object, process each key-value pair
+    let newObj = {};
+    for( let key in obj ){
+        if( obj.hasOwnProperty( key )){
+            // Skip the 'private' key, otherwise recursively process the value
+            if( key !== 'private' ){
+                newObj[key] = removePrivateKeys( obj[key] );
+            }
+        }
+    }
+    return newObj;
+}
+
+// Meteor automagically transfers the settings.public object to the client
+// update it with the environment variables (but not private ones)
+function settingsToClient(){
+    // copy environment data to public part (filtering private data)
+    const sourcePath = EnvSettings.configure().sourcePath;
+    const targetPath = EnvSettings.configure().targetPath;
+    if( sourcePath && targetPath ){
+        const env = Meteor.settings.public.runtime.env;
+        let w = sourcePath.split( '.' );
+        let sourceSettings = Meteor.settings || null;
+        w.forEach(( it ) => {
+            sourceSettings = sourceSettings ? sourceSettings[it] : null;
+        });
+        sourceSettings = sourceSettings ? sourceSettings[env] : null;
+        if( sourceSettings ){
+            w = targetPath.split( '.' );
+            let targetSettings = Meteor.settings.public || {};
+            for( let i=0 ; i<w.length-1 ; ++i ){
+                const it = w[i];
+                targetSettings[it] = targetSettings[it] || {};
+                targetSettings = targetSettings[it];
+            }
+            targetSettings[w[w.length-1]] = removePrivateKeys( sourceSettings );
+        }
+    }
+}
+
+// set-up the APP_ENV runtime environment variable
+// extend Meteor.settings and Meteor.settings.public with some useful addtional attributes
+function setupEnv(){
+    // server-side
+    Meteor.settings.runtime = {
+        env: process.env.APP_ENV || process.env.NODE_ENV,
+        serverDir: serverDir    
+    }
+    // client-side
+    Meteor.settings.public.runtime = {
+        env: process.env.APP_ENV || process.env.NODE_ENV
+    }
+}
+
+//
+// MAIN CODE
+//
 
 if( EnvSettings.C.WaitForStartup ){
     Meteor.startup(() => {
         parsePrivate();
     });
 } else {
-    parsePrivate();
+    Tracker.autorun(() => {
+        parsePrivate();
+    });
 }

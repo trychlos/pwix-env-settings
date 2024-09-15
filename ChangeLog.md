@@ -2,11 +2,15 @@
 
 ## ChangeLog
 
-### 2.0.3-rc
+### 2.1.0-rc
 
     Release date: 
 
-    - Rename internal ready publication
+    - Rename internal ready() Mongo publication and collection
+    - Remove onReadyFn() configuration function, thus bumping minor candidate version number
+    - configure() becomes a reactive data source
+    - Automatically updates the Meteor.settings.public.environment object
+    - Honors packages reconfigurations
 
 ### 2.0.2
 

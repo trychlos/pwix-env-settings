@@ -10,15 +10,21 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 
 ## What is it ?
 
-This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your private assets directory. The configuration files will be autoloaded during startup based on the active environment.
+This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your `private/config` assets directory as a bunch of YAML and/or JSON files, that this package explores, loads and merges into the server-side `Meteor.settings`. Thanks to Meteor magics, all `Meteor.settings.public` data is also made available to the client side.
 
-Now you can easily switch between settings just by changing the NODE_ENV variable.
+This was a initial deal.
 
-The package also allows to specify different configuration files for server and public settings.
+Starting with v2.1.0, the package is able to honor a server path to be made available to the client side, so that an application is able to get its settings from these same files. When the path is correctly configured, you are even able to get some per-environment settings.
 
-Last but not least you can divide your configuration files into partials and get them merged and overloaded during startup. You can define defaults and redefine only a few afterwards based on the active environment (see samples below).
+To let to the server keep some confidentialy, keys which are named `private`, and their children, are always filtered and never sent to the client.
 
-The config files may be written (also mixed) in YAML and JSON notation.
+### Environment management
+
+While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that more would be better, and that we should not be tied to such only three parts.
+
+We so use the `APP_ENV` environment variable to address our own environment identifier. The settings default to be read from the server settings for this environment through the path `environments[process.env.APP_ENV]`.
+
+If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
 
 ## Installation
 
@@ -36,21 +42,13 @@ As simple as:
     import { EnvSettings } from 'meteor/pwix:env-settings';
 ```
 
-### Environment management
-
-While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that many more would be better, and that we should not be tied to such only three parts.
-
-We so use the `APP_ENV` environment variable to address our own environment identifier. Through this identifier, we ask the server to publish the setings recorded inside of its private settings.
-
-The settings are read from the server settings for this environment through the path `Meteor.settings[APP.name].environments[<environment_identifier>]`.
-
-If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
-
 ### When configuration assets are they loaded ?
 
 Historically, configuration assets were loaded at `Meteor.startup()` time.
 
-Starting with v2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
+Starting with v 2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
+
+Starting with v 2.1.0, configuration assets are re-loaded at package configuration time, and `Meteor.settings.public` is rebuilt.
 
 This behavior is hard-coded, and controlled through the `EnvSettings.C.WaitForStartup` constant.
 
@@ -129,14 +127,35 @@ The package's behavior can be configured through a call to the `EnvSettings.conf
 
 Known configuration options are:
 
-- `onReady`
+- `reconfigurePackages`
 
-    An optional function to be executed on the server-side when both the package has been configured and the `EnvSettings.ready()` reactive function has become true:
+    Per-environment settings (aka `Meteor.settings.public.environment`) let some packages be reconfigured by providing an object:
 
-    - either after the configuration assets have been loaded if the package is configured to wait for startup
-    - or immediately (at configuration time) if the configuration assets have already been loaded.
+```json
+    "packages": {
+        "pwix:accounts-ui": {                   the name of the package
+            "global": "AccountsUI",             the name of the exported global which holds the configure() function
+            "conf": {                           the list of overriden keys for this environment
+                "passwordLength": 4,            as either a value or a constant
+                "passwordStrength": {
+                    "constant": "AccountsUI.C.Password.VERYWEAK"
+                }
+            }
+        }
+    }
+```
 
-    The function is called without argument, and we you should not expect anything of its return value.
+    Defaults to `true`.
+
+- `sourcePath`
+
+    The server path where the environment identifier is to be searched. The found environment data will be made available to the client, as an `<targetPath>` object.
+
+    Defaults to `environments`.
+
+- `targetPath`
+
+    The target `Meteor.settings.public` path, defaulting to `environment`.
 
 - `verbosity`
 
@@ -187,6 +206,12 @@ Known configuration options are:
     - `EnvSettings.C.Verbose.ATOMICCONF`
 
         Trace the content of each individual file at the time it is loaded.
+
+    - `EnvSettings.C.Verbose.RECONFIGURE`
+
+        Trace the content of package reconfigurations on a per-environment basis.
+
+When called without argument, `EnvSettings.configure()` acts as a reactive data getter.
 
 Also note, as an explicit reminder, that, because the Meteor packages are instanciated at application level, they can have only one configuration. In order to prevent any risk of collision, the configuration of the package should be reserved to the application itself. In other words, other packages, even if they take advantage of this one, should not try to call themselves the `EnvSettings.configure()` method.
 

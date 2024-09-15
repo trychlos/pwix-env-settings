@@ -6,12 +6,13 @@ import _ from 'lodash';
 
 import { ReactiveVar } from 'meteor/reactive-var';
 
-EnvSettings._conf = {};
-
-EnvSettings._configured = new ReactiveVar( false );
+let _conf = {};
+EnvSettings._conf = new ReactiveVar( _conf );
 
 EnvSettings._defaults = {
-    onReady(){},
+    reconfigurePackages: true,
+    sourcePath: 'environments',
+    targetPath: 'environment',
     verbosity: EnvSettings.C.Verbose.CONFIGURE | EnvSettings.C.Verbose.READY
 };
 
@@ -24,13 +25,16 @@ EnvSettings._defaults = {
  */
 EnvSettings.configure = function( o ){
     if( o && _.isObject( o )){
-        _.merge( EnvSettings._conf, EnvSettings._defaults, o );
+        _.merge( _conf, EnvSettings._defaults, o );
+        EnvSettings._conf.set( _conf );
+        // verbosity management _after_ having set the conf
+        if( _conf.verbosity & EnvSettings.C.Verbose.CONFIGURE ){
+            console.log( 'pwix:env-settings configure() with', o );
+        }
     }
-    // verbosity management _after_ having set the conf
-    _verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o );
-    EnvSettings._configured.set( true );
     // also acts as a getter
-    return EnvSettings._conf;
+    return EnvSettings._conf.get();
 };
 
-_.merge( EnvSettings._conf, EnvSettings._defaults );
+_.merge( _conf, EnvSettings._defaults );
+EnvSettings._conf.set( _conf );
