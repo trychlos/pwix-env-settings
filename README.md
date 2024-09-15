@@ -113,6 +113,12 @@ The exported `EnvSettings` global object provides following items:
 
     The configuration method. See [below](#configuration).
 
+##### `EnvSettings.environmentSettings()`
+
+    Returns the defined per-environment settings object.
+
+    This is the object addressed by `targetPath` configuration parameter.
+
 ##### `EnvSettings.ready()`
 
     A reactive getter/setter method which get/set the readyness status of the package.

@@ -26,6 +26,7 @@ function configure( api ){
     api.versionsFrom([ '2.9.0', '3.0-rc.0' ]);
     api.use( 'ecmascript' );
     api.use( 'mongo' );
+    api.use( 'reactive-var' );
     api.use( 'tmeasday:check-npm-versions@1.0.2 || 2.0.0-beta.0', 'server' );
     api.use( 'tracker' );
 }

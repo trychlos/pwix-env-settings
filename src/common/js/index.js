@@ -7,5 +7,6 @@ import './constants.js';
 import './verbose.js';
 //
 import './configure.js';
+import './functions.js';
 import './ready.js';
 import './startup.js';
