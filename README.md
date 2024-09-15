@@ -113,6 +113,14 @@ The exported `EnvSettings` global object provides following items:
 
     The configuration method. See [below](#configuration).
 
+##### `EnvSettings.environmentServerSettings()`
+
+    Returns the defined per-environment settings object.
+
+    This is the object addressed by `targetPath` configuration parameter.
+
+    Server-side only.
+
 ##### `EnvSettings.environmentSettings()`
 
     Returns the defined per-environment settings object.

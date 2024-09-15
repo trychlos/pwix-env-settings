@@ -13,6 +13,7 @@
     - Honors packages reconfigurations
     - Default configured verbosity is set to EnvSettings.C.Verbose.CONFIGURE to be consistent with other packages
     - Define new EnvSettings.environmentSettings() function
+    - Define new EnvSettings.environmentServerSettings() function
 
 ### 2.0.2
 
