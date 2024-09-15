@@ -13,7 +13,7 @@ EnvSettings._defaults = {
     reconfigurePackages: true,
     sourcePath: 'environments',
     targetPath: 'environment',
-    verbosity: EnvSettings.C.Verbose.CONFIGURE | EnvSettings.C.Verbose.READY
+    verbosity: EnvSettings.C.Verbose.CONFIGURE
 };
 
 /**

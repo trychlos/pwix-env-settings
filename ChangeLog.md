@@ -11,6 +11,7 @@
     - configure() becomes a reactive data source
     - Automatically updates the Meteor.settings.public.environment object
     - Honors packages reconfigurations
+    - Default configured verbosity is set to EnvSettings.C.Verbose.CONFIGURE to be consistent with other packages
 
 ### 2.0.2
 
