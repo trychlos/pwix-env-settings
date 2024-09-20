@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.1.0-rc
+### 2.1.0
 
-    Release date: 
+    Release date: 2024- 9-20
 
     - Rename internal ready() Mongo publication and collection
     - Remove onReadyFn() configuration function, thus bumping minor candidate version number
@@ -112,4 +112,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, Jun. 13th
+- Last updated on 2024, Sep. 20th
