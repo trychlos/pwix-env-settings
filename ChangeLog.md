@@ -33,6 +33,7 @@
     Release date: 2024- 6- 2
 
     - Fix the ready() propagation to the clients (todo #8), adding a new dependency on Mongo
+    - Fix infinite loop when reconfiguring packages
 
 ### 2.0.0
 

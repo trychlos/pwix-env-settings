@@ -39,17 +39,19 @@ Tracker.autorun(() => {
 });
 
 // honors reconfigurePackages
-// this must be called from common code
+// this must be called once from common code
+let _done = false;
+
 Tracker.autorun(() => {
     if( EnvSettings.ready() > 0 && EnvSettings.configure().reconfigurePackages === true ){
         const settings = EnvSettings.environmentSettings();
-        if( settings && settings.packages ){
+        if( settings && settings.packages && !_done ){
             Object.keys( settings.packages ).every(( pck ) => {
                 if( Object.keys( settings.packages[pck] ).includes( 'global' )){
                     const global = settings.packages[pck].global;
                     if( Object.keys( settings.packages[pck] ).includes( 'conf' )){
                         let conf = {};
-                        Object.keys( settings.packages[pck].conf ).every(( key ) => {
+                        Object.keys( settings.packages[pck].conf ).forEach(( key ) => {
                             let val = settings.packages[pck].conf[key];
                             if( val ){
                                 if( _.isString( val )){
@@ -71,7 +73,6 @@ Tracker.autorun(() => {
                                     console.warn( 'unmanaged object', val );
                                 }
                             }
-                            return true;
                         });
                         _verbose( EnvSettings.C.Verbose.RECONFIGURE, 'calling', pck, 'configure() with', conf );
                         Package[pck][global].configure( conf );
@@ -79,6 +80,7 @@ Tracker.autorun(() => {
                 }
                 return true;
             });
+            _done = true;
         }
     }
 });
