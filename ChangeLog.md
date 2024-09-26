@@ -34,6 +34,7 @@
 
     - Fix the ready() propagation to the clients (todo #8), adding a new dependency on Mongo
     - Fix infinite loop when reconfiguring packages
+    - EnvSettings.environmentSettings() is a reactive data source (was already, but now is documented)
 
 ### 2.0.0
 

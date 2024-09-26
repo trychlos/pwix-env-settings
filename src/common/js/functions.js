@@ -24,6 +24,7 @@ EnvSettings.environmentServerSettings = function(){
 /**
  * @locus Anywhere
  * @returns {Object} the per-environment settings object addressed by targetPath configuration parameter
+ *  A reactive data source.
  */
 EnvSettings.environmentSettings = function(){
     const targetPath = EnvSettings.configure().targetPath;

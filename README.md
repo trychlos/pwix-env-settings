@@ -127,6 +127,8 @@ The exported `EnvSettings` global object provides following items:
 
     This is the object addressed by `targetPath` configuration parameter.
 
+    A reactive data source.
+
 ##### `EnvSettings.ready()`
 
     A reactive getter/setter method which get/set the readyness status of the package.
