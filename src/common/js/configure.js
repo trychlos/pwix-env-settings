@@ -25,7 +25,7 @@ EnvSettings._defaults = {
  */
 EnvSettings.configure = function( o ){
     if( o && _.isObject( o )){
-        _.merge( _conf, EnvSettings._defaults, o );
+        _conf = _.merge( EnvSettings._defaults, _conf, o );
         EnvSettings._conf.set( _conf );
         // verbosity management _after_ having set the conf
         if( _conf.verbosity & EnvSettings.C.Verbose.CONFIGURE ){
@@ -36,5 +36,5 @@ EnvSettings.configure = function( o ){
     return EnvSettings._conf.get();
 };
 
-_.merge( _conf, EnvSettings._defaults );
+_conf = _.merge( {}, EnvSettings._defaults );
 EnvSettings._conf.set( _conf );
