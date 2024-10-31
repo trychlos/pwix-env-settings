@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Minor spelling fixes
 
 ### 2.1.0
 

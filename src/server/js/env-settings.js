@@ -214,7 +214,7 @@ function parsePrivate(){
     // make the server environment settings available to the client
     settingsToClient();
 
-    // advertize that the package is ready
+    // advertise that the package is ready
     EnvSettings.ready( true );
 }
 
