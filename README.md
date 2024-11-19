@@ -548,4 +548,4 @@ Copyright (c) 2015 [Tom Freudenberg](http://www.4commerce.de/), [4commerce techn
 
 ---
 P. Wieser
-- Last updated on 2024, Sep. 20th
+- Last updated on 2024, Nov. 19th
