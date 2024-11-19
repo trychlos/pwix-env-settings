@@ -2,6 +2,12 @@
 
 ## ChangeLog
 
+### 2.1.2-rc
+
+    Release date: 
+
+    - 
+
 ### 2.1.1
 
     Release date: 2024-11-19
