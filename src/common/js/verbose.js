@@ -2,7 +2,7 @@
  * pwix:env-settings/src/server/js/verbose.js
  */
 
-_verbose = function( level ){
+EnvSettings.verbose = function( level ){
     if( EnvSettings.configure().verbosity & level ){
         let _args = [ ...arguments ];
         _args.shift();

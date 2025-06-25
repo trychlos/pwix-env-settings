@@ -35,52 +35,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    _verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready());
-});
-
-// honors reconfigurePackages
-// this must be called once from common code
-let _done = false;
-
-Tracker.autorun(() => {
-    if( EnvSettings.ready() > 0 && EnvSettings.configure().reconfigurePackages === true ){
-        const settings = EnvSettings.environmentSettings();
-        if( settings && settings.packages && !_done ){
-            Object.keys( settings.packages ).every(( pck ) => {
-                if( Object.keys( settings.packages[pck] ).includes( 'global' )){
-                    const global = settings.packages[pck].global;
-                    if( Object.keys( settings.packages[pck] ).includes( 'conf' )){
-                        let conf = {};
-                        Object.keys( settings.packages[pck].conf ).forEach(( key ) => {
-                            let val = settings.packages[pck].conf[key];
-                            if( val ){
-                                if( _.isString( val )){
-                                    conf[key] = val;
-                                } else if( _.isNumber( val )){
-                                    conf[key] = val;
-                                } else if( _.isObject( val )){
-                                    if( val.constant ){
-                                        let words = val.constant.split( '.' );
-                                        let val2 = Package[pck];
-                                        for( let i=0 ; i<words.length ; ++i ){
-                                            val2 = val2[words[i]];
-                                        }
-                                        conf[key] = val2;
-                                    } else {
-                                        console.warn( 'unmanaged key', val );
-                                    }
-                                } else {
-                                    console.warn( 'unmanaged object', val );
-                                }
-                            }
-                        });
-                        _verbose( EnvSettings.C.Verbose.RECONFIGURE, 'calling', pck, 'configure() with', conf );
-                        Package[pck][global].configure( conf );
-                    }
-                }
-                return true;
-            });
-            _done = true;
-        }
-    }
+    EnvSettings.verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready() ? 'true':'false' );
 });

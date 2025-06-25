@@ -10,19 +10,13 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 
 ## What is it ?
 
-This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your `private/config` assets directory as a bunch of YAML and/or JSON files, that this package explores, loads and merges into the server-side `Meteor.settings`. Thanks to Meteor magics, all `Meteor.settings.public` data is also made available to the client side.
-
-This was a initial deal.
-
-Starting with v2.1.0, the package is able to honor a server path to be made available to the client side, so that an application is able to get its settings from these same files. When the path is correctly configured, you are even able to get some per-environment settings.
-
-To let to the server keep some confidentialy, keys which are named `private`, and their children, are always filtered and never sent to the client.
+This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your `private/config` assets directory as a bunch of YAML and/or JSON files, that this package explores, loads and merges into the server-side `Meteor.settings`. Thanks to Meteor magics, all `Meteor.settings.public` data are also made available on the client side.
 
 ### Environment management
 
 While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that more would be better, and that we should not be tied to such only three parts.
 
-We so use the `APP_ENV` environment variable to address our own environment identifier. The settings default to be read from the server settings for this environment through the path `environments[process.env.APP_ENV]`.
+We so use the `APP_ENV` environment variable to address our own environment identifier.
 
 If not specified in the `APP_ENV` variable, the environment identifier falls back to the `nodejs` `NODE_ENV` environment name.
 
@@ -44,13 +38,7 @@ As simple as:
 
 ### When configuration assets are they loaded ?
 
-Historically, configuration assets were loaded at `Meteor.startup()` time.
-
-Starting with v 2.0.0, configuration assets are loaded at package initialization time, i.e. very early in the startup process.
-
-Starting with v 2.1.0, configuration assets are re-loaded at package configuration time, and `Meteor.settings.public` is rebuilt.
-
-This behavior is hard-coded, and controlled through the `EnvSettings.C.WaitForStartup` constant.
+Configuration assets are loaded at `Meteor.startup()` time. Application has so all needed time to configure the package before that.
 
 ## Provides
 
@@ -64,20 +52,20 @@ On client side, the package sets the `Meteor.settings.public` object to the publ
             comments: [                                                       ^
                 'General env-settings package configuration',                 |
                 'see https://atmospherejs.com/pwix/env-settings'              |
-            ],                                                                | the merged content of all yaml/json files found under `private/config/public` folder.
-            persistent_session: { default_method: 'persistent' },             |
+            ],                                                                |
+            public_key: "public_value",                                       | the merged content of all yaml/json files found under `private/config/public` folder.
             myConfig: {                                                       |
                 a_key: [Object],                                              |
-                version: '23.05.17.4'                                         |
+                my_version: '23.05.17.4'                                      |
             },                                                                v
-            runtime: { env: 'dev:0' }                                         <- dynamically added by the package
+            runtime: { env: 'dev:0' }                                         <- dynamically added by the package on client side
         }
     }
 ```
 
 ### Server side
 
-On server side, the package sets the same `Meteor.settings.public` object than on the client side, and adds to ``Meteor.settings`` the full merged content of the `private/config/server` folder, giving something like:
+On server side, the package sets the same `Meteor.settings.public` object than on the client side, and adds to `Meteor.settings` the full merged content of the `private/config/server` folder, giving something like:
 
 ```js
     {
@@ -86,20 +74,20 @@ On server side, the package sets the same `Meteor.settings.public` object than o
                 'General env-settings package configuration',
                 'see https://atmospherejs.com/pwix/env-settings'
             ],
-            persistent_session: { default_method: 'persistent' },
+            public_key: "public_value",
             myConfig: {
                 a_key: [Object],
-                version: '23.05.17.4'
+                my_version: '23.05.17.4'
             },
             runtime: { env: 'dev:0' }
         },
         myServerConfig: {
             ...
         },
-        runtime: {
-            env: 'dev:0',
-            serverDir: '/home/pierre/data/eclipse/iziam/.meteor/local/build/programs/server'
-        }
+        runtime: {                                                                                 ^
+            env: 'dev:0',                                                                          | dynamically added by the package on server side
+            serverDir: '/home/pierre/data/eclipse/iziam/.meteor/local/build/programs/server'       |
+        }                                                                                          v
     }
 ```
 
@@ -112,22 +100,6 @@ The exported `EnvSettings` global object provides following items:
 ##### `EnvSettings.configure()`
 
     The configuration method. See [below](#configuration).
-
-##### `EnvSettings.environmentServerSettings()`
-
-    Returns the defined per-environment settings object.
-
-    This is the object addressed by `targetPath` configuration parameter.
-
-    Server-side only.
-
-##### `EnvSettings.environmentSettings()`
-
-    Returns the defined per-environment settings object.
-
-    This is the object addressed by `targetPath` configuration parameter.
-
-    A reactive data source.
 
 ##### `EnvSettings.ready()`
 

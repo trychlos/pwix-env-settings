@@ -2,11 +2,13 @@
 
 ## ChangeLog
 
-### 2.1.2-rc
+### 2.2.0-rc
 
     Release date: 
 
-    - 
+    - Back to historic behavior to laod settings at Meteor.startup() time
+    - Remove application-level (e.g. 'environments') code
+    - verbose() function is now attached to EnvSettings global object
 
 ### 2.1.1
 
