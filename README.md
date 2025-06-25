@@ -213,7 +213,7 @@ Starting with v 1.4.0, and in accordance with advices from [the Meteor Guide](ht
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 2.1.0:
+Dependencies as of v 2.2.0:
 ```
     'lodash': '^4.17.21',
     'js-yaml': '^4.1.0'
@@ -520,4 +520,4 @@ Copyright (c) 2015 [Tom Freudenberg](http://www.4commerce.de/), [4commerce techn
 
 ---
 P. Wieser
-- Last updated on 2024, Nov. 19th
+- Last updated on 2025, Jun. 25th

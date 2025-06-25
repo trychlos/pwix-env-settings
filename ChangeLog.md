@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.0-rc
+### 2.2.0
 
-    Release date: 
+    Release date: 2025- 6-25
 
     - Back to historic behavior to laod settings at Meteor.startup() time
     - Remove application-level (e.g. 'environments') code
@@ -129,4 +129,4 @@
 
 ---
 P. Wieser
-- Last updated on 2024, Nov. 19th
+- Last updated on 2025, Jun. 25th
