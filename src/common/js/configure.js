@@ -25,7 +25,7 @@ EnvSettings.configure = function( o ){
         _conf = _.merge( EnvSettings._defaults, _conf, o );
         EnvSettings._conf.set( _conf );
         // verbosity management _after_ having set the conf
-        EnvSettings.verbose( EnvSettings.C.Verbose.CONFIGURE, 'pwix:env-settings configure() with', o );
+        EnvSettings.verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o );
     }
     // also acts as a getter
     return EnvSettings._conf.get();

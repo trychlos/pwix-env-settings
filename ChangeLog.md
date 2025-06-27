@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix configure() verbose message
 
 ### 2.2.0
 
