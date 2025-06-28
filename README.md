@@ -115,36 +115,6 @@ The package's behavior can be configured through a call to the `EnvSettings.conf
 
 Known configuration options are:
 
-- `reconfigurePackages`
-
-    Per-environment settings (aka `Meteor.settings.public.environment`) let some packages be reconfigured by providing an object:
-
-```json
-    "packages": {
-        "pwix:accounts-ui": {                   the name of the package
-            "global": "AccountsUI",             the name of the exported global which holds the configure() function
-            "conf": {                           the list of overriden keys for this environment
-                "passwordLength": 4,            as either a value or a constant
-                "passwordStrength": {
-                    "constant": "AccountsUI.C.Password.VERYWEAK"
-                }
-            }
-        }
-    }
-```
-
-    Defaults to `true`.
-
-- `sourcePath`
-
-    The server path where the environment identifier is to be searched. The found environment data will be made available to the client, as an `<targetPath>` object.
-
-    Defaults to `environments`.
-
-- `targetPath`
-
-    The target `Meteor.settings.public` path, defaulting to `environment`.
-
 - `verbosity`
 
     A OR-ed value which describes the verbosity level requested by the application.
@@ -194,10 +164,6 @@ Known configuration options are:
     - `EnvSettings.C.Verbose.ATOMICCONF`
 
         Trace the content of each individual file at the time it is loaded.
-
-    - `EnvSettings.C.Verbose.RECONFIGURE`
-
-        Trace the content of package reconfigurations on a per-environment basis.
 
 When called without argument, `EnvSettings.configure()` acts as a reactive data getter.
 

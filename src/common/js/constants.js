@@ -16,8 +16,7 @@ EnvSettings.C = {
         LOADFILE:     0x01 <<  6,
         SERVERCONF:   0x01 <<  7,
         PUBLICCONF:   0x01 <<  8,
-        ATOMICCONF:   0x01 <<  9,
-        RECONFIGURE:  0x01 << 10
+        ATOMICCONF:   0x01 <<  9
     },
 
     // an internal publication to let the server propagates the 'ready' status to the clients

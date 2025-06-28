@@ -7,6 +7,7 @@
     Release date: 
 
     - Fix configure() verbose message
+    - Remove obsolete parts of README and constants
 
 ### 2.2.0
 
