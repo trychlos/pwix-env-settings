@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.1-rc
+### 2.2.1
 
-    Release date: 
+    Release date: 2025- 6-28
 
     - Fix configure() verbose message
     - Remove obsolete parts of README and constants
@@ -136,4 +136,4 @@
 
 ---
 P. Wieser
-- Last updated on 2025, Jun. 25th
+- Last updated on 2025, Jun. 28th
