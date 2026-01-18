@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Warns if we miss the APP_ENV environment variable
 
 ### 2.2.1
 

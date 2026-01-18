@@ -34,8 +34,6 @@
 import _ from 'lodash';
 import YAML from 'js-yaml';
 
-import { Tracker } from 'meteor/tracker';
-
 // use for file access
 var fs = Npm.require( 'fs' );
 // using this meteor lib, gives secure access to folder structure
@@ -113,7 +111,7 @@ function getConfig( configPath, scope ){
 
     loadConfigFiles( locateFiles( configPath, false, match_file_ ) , config );
     loadConfigFiles( locateFiles( files.pathJoin( configPath, scope), false, match_files_ ), config );
-    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.APP_ENV || process.env.NODE_ENV ) , false, match_file_ ), config );
+    loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.APP_ENV || process.env.NODE_ENV ), false, match_file_ ), config );
     loadConfigFiles( locateFiles( files.pathJoin( configPath, process.env.APP_ENV || process.env.NODE_ENV, scope ), false, match_files_ ), config );
 
     return config;
@@ -217,6 +215,10 @@ function parsePrivateConfig(){
 // set-up the APP_ENV runtime environment variable
 // extend Meteor.settings and Meteor.settings.public with some useful addtional attributes
 function setupEnv(){
+    // have at least a warning if we miss the APP_ENV environment variable
+    if( !process.env.APP_ENV ){
+        console.warn( '[pwix:env-settings] APP_ENV is not defined, defaulting to NODE_ENV=\''+process.env.NODE_ENV+'\'' );
+    }
     // server-side
     Meteor.settings.runtime = {
         env: process.env.APP_ENV || process.env.NODE_ENV,
