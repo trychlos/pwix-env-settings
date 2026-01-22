@@ -12,6 +12,20 @@ This package is a fork from [4commerce:env-settings v 1.2.0](https://github.com/
 
 This [meteorjs](https://www.meteor.com) package allows you to organize your settings inside your `private/config` assets directory as a bunch of YAML and/or JSON files, that this package explores, loads and merges into the server-side `Meteor.settings`. Thanks to Meteor magics, all `Meteor.settings.public` data are also made available on the client side.
 
+Also note that this package - if not really honors - at least doesn't prevent the use `METEOR_SETTINGS` environment variable as described in [Meteor documentation](https://docs.meteor.com/api/meteor#Meteor-settings). And note too that settings from `METEOR_SETTINGS` have lower precedence that those from assets.
+
+> __From 4commerce documentation:__
+>
+> This [...] package allows you to organize your settings inside your private assets directory. The configuration files will be autoloaded during startup based on the active environment.
+>
+> Now you can easily switch between settings just by changing the NODE_ENV variable.
+>
+> The package also allows to specify different configuration files for server and public settings.
+>
+> Last but not least you can divide your configuration files into partials and get them merged and overloaded during startup. You can define defaults and redefine only a few afterwards based on the active environment (see samples below).
+>
+> The config files may be written (also mixed) in YAML and JSON notation.
+
 ### Environment management
 
 While `nodejs` defines only three environments (`development`, `staging` and `production`), and though Meteor has followed the same route, we strongly believe that more would be better, and that we should not be tied to such only three parts.
@@ -179,8 +193,12 @@ Starting with v 1.4.0, and in accordance with advices from [the Meteor Guide](ht
 
 Instead we check npm versions of installed packages at runtime, on server startup, in development environment.
 
-Dependencies as of v 2.2.0:```
-    'lodash': '^4.17.21',    'js-yaml': '^4.1.0'```
+Dependencies as of v 2.2.0:
+
+```js
+    'lodash': '^4.17.21',
+    'js-yaml': '^4.1.0'
+```
 
 Each of these dependencies should be installed at application level:
 ```
