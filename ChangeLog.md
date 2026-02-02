@@ -7,6 +7,7 @@
     Release date: 
 
     - ready() verboses to a true Boolean value instead of a 'true'/'false' string
+    - Define the handle as const
 
 ### 2.2.2
 

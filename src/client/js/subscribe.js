@@ -4,7 +4,7 @@
 
 import { Mongo } from 'meteor/mongo';
 
-_handle = Meteor.subscribe( EnvSettings.C.readyPub.publication );
+const _handle = Meteor.subscribe( EnvSettings.C.readyPub.publication );
 
 Tracker.autorun(() => {
     if( _handle.ready()){
