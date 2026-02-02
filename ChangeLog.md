@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.2-rc
+### 2.2.2
 
-    Release date: 
+    Release date: 2026- 2- 2
 
     - Warns if we miss the APP_ENV environment variable
 
@@ -142,4 +142,4 @@
 
 ---
 P. Wieser
-- Last updated on 2025, Jun. 28th
+- Last updated on 2026, Feb. 2nd
