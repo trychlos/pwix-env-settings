@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - ready() verboses to a true Boolean value instead of a 'true'/'false' string
 
 ### 2.2.2
 

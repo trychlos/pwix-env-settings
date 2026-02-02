@@ -13,7 +13,7 @@ import _ from 'lodash';
 import { Tracker } from 'meteor/tracker';
 
 _ready = {
-    value: 0,
+    value: false,
     dep: new Tracker.Dependency()
 };
 
@@ -26,8 +26,8 @@ _ready = {
  *  A reactive data source.
  */
 EnvSettings.ready = function( b ){
-    if( b === true ){
-        _ready.value += 1;
+    if( b !== undefined ){
+        _ready.value = b;
         _ready.dep.changed();
     }
     _ready.dep.depend();
@@ -35,5 +35,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    EnvSettings.verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready() ? 'true':'false' );
+    EnvSettings.verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready());
 });
