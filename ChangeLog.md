@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.2.3-rc.0
+### 2.2.3
 
-    Release date: 
+    Release date: 2026- 2- 9
 
     - ready() verboses to a true Boolean value instead of a 'true'/'false' string
     - Define the handle as const
@@ -149,4 +149,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Feb. 2nd
+- Last updated on 2026, Feb. 9th
