@@ -40,6 +40,7 @@ This Meteor package is installable with the usual command:
 
 ```sh
     meteor add pwix:env-settings
+    meteor npm install lodash js-yaml --save
 ```
 
 ## Usage

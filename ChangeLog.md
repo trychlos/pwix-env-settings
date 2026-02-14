@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Update README installation paragraph
 
 ### 2.2.3
 
