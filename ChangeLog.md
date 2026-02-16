@@ -7,6 +7,7 @@
     Release date: 
 
     - Update README installation paragraph
+    - configure() now warns for unmanaged keys
 
 ### 2.2.3
 

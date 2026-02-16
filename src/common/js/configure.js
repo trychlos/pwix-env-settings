@@ -22,10 +22,21 @@ EnvSettings._defaults = {
  */
 EnvSettings.configure = function( o ){
     if( o && _.isObject( o )){
-        _conf = _.merge( EnvSettings._defaults, _conf, o );
-        EnvSettings._conf.set( _conf );
-        // verbosity management _after_ having set the conf
-        EnvSettings.verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', o );
+        // check that keys exist
+        let built_conf = {};
+        Object.keys( o ).forEach(( it ) => {
+            if( Object.keys( EnvSettings._defaults ).includes( it )){
+                built_conf[it] = o[it];
+            } else {
+                console.warn( 'pwix:env-settings configure() ignore unmanaged key \''+it+'\'' );
+            }
+        });
+        if( Object.keys( built_conf ).length ){
+            _conf = _.merge( EnvSettings._defaults, _conf, built_conf );
+            EnvSettings._conf.set( _conf );
+            // verbosity management _after_ having set the conf
+            EnvSettings.verbose( EnvSettings.C.Verbose.CONFIGURE, 'configure() with', built_conf );
+        }
     }
     // also acts as a getter
     return EnvSettings._conf.get();
