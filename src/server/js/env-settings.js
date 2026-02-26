@@ -34,6 +34,10 @@
 import _ from 'lodash';
 import YAML from 'js-yaml';
 
+import { Logger } from 'meteor/pwix:logger';
+
+const logger = Logger.get();
+
 // use for file access
 var fs = Npm.require( 'fs' );
 // using this meteor lib, gives secure access to folder structure
@@ -41,7 +45,7 @@ var files = Npm.require( '../mini-files' );
 
 // save reference to serverDir
 var serverDir = files.pathResolve( __meteor_bootstrap__.serverDir );
-EnvSettings.verbose( EnvSettings.C.Verbose.SERVERDIR, 'serverDir', serverDir );
+logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.SERVERDIR }, 'serverDir', serverDir );
 
 // Taken from meteor/tools/bundler.js#L1509
 // currently the directory structure has not changed for build
@@ -49,7 +53,7 @@ var assetBundlePath = files.pathJoin( serverDir, 'assets', 'app' );
 
 // location of the private config folders
 var configPath = files.pathJoin( assetBundlePath, 'config' );
-EnvSettings.verbose( EnvSettings.C.Verbose.CONFIGPATH, 'configPath', configPath );
+logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.CONFIGPATH }, 'configPath', configPath );
 
 // when showing error messages, we want to show the shortest path
 // to the private asset ressource and not the absolute path from bundle
@@ -60,29 +64,28 @@ function assetPath(path) {
 // this function autoloads settings from private/config assets folder
 // located at private/config (see function getConfig)
 function autoloadSettings(){
-	//console.debug( 'pwix:env-settings.autoloadSettings()' );
 
     // extend the global settings
-    EnvSettings.verbose( EnvSettings.C.Verbose.SERVERCONF, 'extending with serverConfig' );
-    EnvSettings.verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.SERVERCONF }, 'extending with serverConfig' );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.SERVERCONF }, 'Meteor.settings', Meteor.settings );
 
     const serverConfig = getConfig( configPath, 'server' );
     Meteor.settings = Meteor.settings || {};
     _.merge( Meteor.settings, serverConfig );
 
-    EnvSettings.verbose( EnvSettings.C.Verbose.SERVERCONF, 'serverConfig', serverConfig );
-    EnvSettings.verbose( EnvSettings.C.Verbose.SERVERCONF, 'Meteor.settings', Meteor.settings );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.SERVERCONF }, 'serverConfig', serverConfig );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.SERVERCONF }, 'Meteor.settings', Meteor.settings );
 
     // extend Meteor.settings.public
-    EnvSettings.verbose( EnvSettings.C.Verbose.PUBLICCONF, 'extending with publicConfig' );
-    EnvSettings.verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.PUBLICCONF }, 'extending with publicConfig' );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.PUBLICCONF }, 'Meteor.settings.public', Meteor.settings.public );
 
     const publicConfig = getConfig( configPath, 'public' );
     Meteor.settings.public = Meteor.settings.public || {};
     _.merge( Meteor.settings.public, publicConfig );
 
-    EnvSettings.verbose( EnvSettings.C.Verbose.PUBLICCONF, 'publicConfig', publicConfig );
-    EnvSettings.verbose( EnvSettings.C.Verbose.PUBLICCONF, 'Meteor.settings.public', Meteor.settings.public );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.PUBLICCONF }, 'publicConfig', publicConfig );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.PUBLICCONF }, 'Meteor.settings.public', Meteor.settings.public );
 
     // check if we need to append the new public settings also
     // to the runtime_environment. this happens, when no settings
@@ -138,12 +141,12 @@ function loadConfigFile( filename ){
 function loadConfigFiles( filenames, config ){
     config = config || {}
     filenames.every(( filename ) => {
-        EnvSettings.verbose( EnvSettings.C.Verbose.LOADFILE, 'loadFile', filename );
+        logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.LOADFILE }, 'loadFile', filename );
         var content = loadConfigFile( filename );
         if( content !== false ){
             // try to parse the content and return instantiated object 
             var config_ = parseConfig( content, filename );
-            EnvSettings.verbose( EnvSettings.C.Verbose.ATOMICCONF, 'atom', config_ );
+            logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.ATOMICCONF }, 'atom', config_ );
             // check that no public attribute is used at root
             if( config_ && Object.keys( config_ ).includes( 'public' )){
                 throw new Meteor.Error( 'It is not allowed to include public settings at server or public config files on <root> level! Error in file ' + assetPath( filename ) + '.' );
@@ -217,7 +220,7 @@ function parsePrivateConfig(){
 function setupEnv(){
     // have at least a warning if we miss the APP_ENV environment variable
     if( !process.env.APP_ENV ){
-        console.warn( '[pwix:env-settings] APP_ENV is not defined, defaulting to NODE_ENV=\''+process.env.NODE_ENV+'\'' );
+        logger.warn( 'APP_ENV is not defined, defaulting to NODE_ENV=\''+process.env.NODE_ENV+'\'' );
     }
     // server-side
     Meteor.settings.runtime = {

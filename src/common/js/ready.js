@@ -10,7 +10,10 @@
 
 import _ from 'lodash';
 
+import { Logger } from 'meteor/pwix:logger';
 import { Tracker } from 'meteor/tracker';
+
+const logger = Logger.get();
 
 _ready = {
     value: false,
@@ -35,5 +38,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    EnvSettings.verbose( EnvSettings.C.Verbose.READY, 'ready', EnvSettings.ready());
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.READY }, 'ready', EnvSettings.ready());
 });

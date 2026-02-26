@@ -4,7 +4,6 @@
 
 import './global.js';
 import './constants.js';
-import './verbose.js';
 //
 import './configure.js';
 import './ready.js';

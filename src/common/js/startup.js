@@ -2,14 +2,11 @@
  * pwix:env-settings/src/server/js/startup.js
  */
 
-Meteor.startup(() => {
-    if( EnvSettings.configure().verbosity & EnvSettings.C.Verbose.STARTUP_MARK ){
-        console.log( 'pwix:env-settings startup' );
-    }
-});
+import { Logger } from 'meteor/pwix:logger';
+
+const logger = Logger.get();
 
 Meteor.startup(() => {
-    if( EnvSettings.configure().verbosity & EnvSettings.C.Verbose.STARTUP_DUMP ){
-        console.log( 'pwix:env-settings startup', EnvSettings );
-    }
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.STARTUP_MARK }, 'startup' );
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.STARTUP_DUMP }, 'startup', EnvSettings );
 });

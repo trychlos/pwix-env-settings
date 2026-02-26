@@ -2,12 +2,13 @@
 
 ## ChangeLog
 
-### 2.2.4-rc.0
+### 2.3.0-rc.0
 
     Release date: 
 
     - Update README installation paragraph
     - configure() now warns for unmanaged keys
+    - Use pwix:logger universal logger, thus bumping minor candidate version number
 
 ### 2.2.3
 
