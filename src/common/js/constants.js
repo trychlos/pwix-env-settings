@@ -21,7 +21,7 @@ EnvSettings.C = {
 
     // an internal publication to let the server propagates the 'ready' status to the clients
     readyPub: {
-        publication: 'pwix:env-settings.ready.publication',
+        publication: 'pwix.EnvSettings.p.ready',
         collection: 'pwix:env-settings.ready.collection'
     }
 };

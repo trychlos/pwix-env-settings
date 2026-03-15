@@ -9,6 +9,7 @@
     - Update README installation paragraph
     - configure() now warns for unmanaged keys
     - Use pwix:logger universal logger, thus bumping minor candidate version number
+    - Make sure methods and publications are prefixed with a full namespace
 
 ### 2.2.3
 
