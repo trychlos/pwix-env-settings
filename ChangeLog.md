@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.3.0-rc.0
+### 2.3.0
 
-    Release date: 
+    Release date: 2026- 4- 2
 
     - Update README installation paragraph
     - configure() now warns for unmanaged keys
@@ -158,4 +158,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Feb. 9th
+- Last updated on 2026, Apr. 2nd
