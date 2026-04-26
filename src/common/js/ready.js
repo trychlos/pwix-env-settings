@@ -38,5 +38,5 @@ EnvSettings.ready = function( b ){
 }
 
 Tracker.autorun(() => {
-    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.READY }, 'ready', EnvSettings.ready());
+    logger.verbose({ verbosity: EnvSettings.configure().verbosity, against: EnvSettings.C.Verbose.READY }, 'ready()', EnvSettings.ready());
 });

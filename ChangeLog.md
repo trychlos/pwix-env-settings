@@ -6,7 +6,7 @@
 
     Release date: 
 
-    - 
+    - Fix minor typo
 
 ### 2.3.0
 
