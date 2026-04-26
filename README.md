@@ -502,4 +502,4 @@ Copyright (c) 2015 [Tom Freudenberg](http://www.4commerce.de/), [4commerce techn
 
 ---
 P. Wieser
-- Last updated on 2026, Apr. 2nd
+- Last updated on 2026, Apr. 26th

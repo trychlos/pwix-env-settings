@@ -2,9 +2,9 @@
 
 ## ChangeLog
 
-### 2.3.1-rc.0
+### 2.3.1
 
-    Release date: 
+    Release date: 2026- 4-26
 
     - Fix minor typo
 
@@ -164,4 +164,4 @@
 
 ---
 P. Wieser
-- Last updated on 2026, Apr. 2nd
+- Last updated on 2026, Apr. 26th
